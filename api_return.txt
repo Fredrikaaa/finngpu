@@ -1,0 +1,50 @@
+Top-level structure:
+['docs',
+ 'filters',
+ 'metadata',
+ 'mapUrl',
+ 'newMapUrl',
+ 'pageMetadata',
+ 'resultHeading']
+
+Structure of the first item in 'docs':
+['type',
+ 'id',
+ 'main_search_key',
+ 'heading',
+ 'location',
+ 'image',
+ 'flags',
+ 'timestamp',
+ 'coordinates',
+ 'ad_type',
+ 'labels',
+ 'canonical_url',
+ 'extras',
+ 'price',
+ 'distance',
+ 'trade_type',
+ 'image_urls',
+ 'ad_id']
+
+Sample data from the first item:
+type: bap
+id: 375977734
+main_search_key: SEARCH_ID_BAP_ALL
+heading: GeForce GTX 1660 Super 6gb - Skjermkort
+location: Trondheim
+image: {'url': 'https://images.finncdn.no/dynamic/default/2024/10/vertical-0/17/4/375/977/734_ca077789-aca7-4f06-b61e-7e9ee020044a.jpg', 'path': '2024/10/vertical-0/17/4/375/977/734_ca077789-aca7-4f06-b61e-7e9ee020044a.jpg', 'height': 1200, 'width': 1600, 'aspect_ratio': 1.3333333333333333}
+flags: ['private', 'shipping_exists']
+timestamp: 1729164247510
+coordinates: {'lat': 63.43667, 'lon': 10.4134}
+ad_type: 67
+labels: [{'id': 'fiks_ferdig', 'text': 'Fiks ferdig', 'type': 'PRIMARY'}, {'id': 'private', 'text': 'Privat', 'type': 'SECONDARY'}]
+canonical_url: https://www.finn.no/recommerce/forsale/item/375977734
+extras: []
+price: {'amount': 1000, 'currency_code': 'NOK', 'price_unit': 'kr'}
+distance: 0
+trade_type: Til salgs
+image_urls: ['https://images.finncdn.no/dynamic/default/2024/10/vertical-0/17/4/375/977/734_ca077789-aca7-4f06-b61e-7e9ee020044a.jpg', 'https://images.finncdn.no/dynamic/default/2024/10/vertical-0/17/4/375/977/734_8e8baf8a-8371-4f43-9374-2a36911757f8.jpg', 'https://images.finncdn.no/dynamic/default/2024/10/vertical-0/17/4/375/977/734_3ba0d4ee-b6c0-40d2-8dee-a6d12d104d23.jpg', 'https://images.finncdn.no/dynamic/default/2024/10/vertical-0/17/4/375/977/734_81bb3480-7e8b-4c74-adf8-94e3723273d1.jpg']
+ad_id: 375977734
+
+Total number of items: 50

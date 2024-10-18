@@ -26,6 +26,11 @@
   "GeForce GTX 1660 6 GB",
   "GeForce GTX 1650 SUPER 4 GB",
   "GeForce GTX 1650 4 GB",
+  "GeForce GTX 1080 Ti 11 GB",
+  "GeForce GTX 1080 8 GB",
+  "GeForce GTX 1070 Ti 8 GB",
+  "GeForce GTX 1070 8 GB",
+  "GeForce GTX 1060 6 GB",
   "Radeon RX 7900 XTX 24 GB",
   "Radeon RX 7900 XT 20 GB",
   "Radeon RX 7800 XT 16 GB",
@@ -45,5 +50,6 @@
   "Radeon RX 5700 8 GB",
   "Radeon RX 5600 XT 6 GB",
   "Radeon RX 5500 XT 8 GB",
+  "Radeon RX 590 8 GB",
   "Radeon RX 580 8 GB"
 ]

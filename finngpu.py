@@ -71,7 +71,7 @@ def extract_model_info(text):
 def match_gpu_model(title, gpu_models):
     brand, model_numbers, vram = extract_model_info(title)
 
-    if not model_numbers:
+    if brand is None and model_numbers is None and vram is None:
         return "Skipped", None, None, None, None
 
     if not model_numbers:

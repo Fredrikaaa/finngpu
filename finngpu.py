@@ -62,10 +62,6 @@ def extract_model_info(text):
                 brand = 'NVIDIA'
             elif prefix == 'rx':
                 brand = 'AMD'
-            elif number.startswith('20') or number.startswith('30') or number.startswith('40'):
-                brand = 'NVIDIA'  # Assume NVIDIA for 20xx, 30xx, and 40xx series
-            elif number.startswith('5') or number.startswith('6') or number.startswith('7'):
-                brand = 'AMD'  # Assume AMD for 5xxx, 6xxx, and 7xxx series
 
     vram = re.search(r'(\d+)\s*gb', text_lower)
     vram = vram.group(1) if vram else None
@@ -75,23 +71,45 @@ def extract_model_info(text):
 def match_gpu_model(title, gpu_models):
     brand, model_numbers, vram = extract_model_info(title)
 
-    if brand is None and model_numbers is None and vram is None:
+    if not model_numbers:
         return "Skipped", None, None, None, None
+
+    if not model_numbers:
+        return "Unknown", brand, None, vram, None
 
     for gpu in reversed(gpu_models):
         gpu_lower = gpu.lower()
         for model_number in model_numbers:
-            if model_number.lower() in gpu_lower:
-                if re.search(rf'\b{re.escape(model_number.lower())}\b', gpu_lower):
-                    # Check if the brand matches
-                    if (brand == 'NVIDIA' and ('geforce' in gpu_lower or 'gtx' in gpu_lower or 'rtx' in gpu_lower)) or \
-                       (brand == 'AMD' and ('radeon' in gpu_lower or 'rx' in gpu_lower)):
+            model_lower = model_number.lower()
+            if model_lower in gpu_lower:
+                # Check for exact match or correct suffix handling
+                is_match = re.search(rf'\b{re.escape(model_lower)}\b', gpu_lower)
+
+                # Handle suffix matching
+                if ' ti' in gpu_lower:
+                    is_match = is_match and ' ti' in model_lower
+                elif ' super' in gpu_lower:
+                    is_match = is_match and ' super' in model_lower
+                elif ' xt' in gpu_lower:
+                    is_match = is_match and ' xt' in model_lower
+
+                if is_match:
+                    # Infer brand if not explicitly mentioned
+                    inferred_brand = brand
+                    if not inferred_brand:
+                        if 'geforce' in gpu_lower or 'gtx' in gpu_lower or 'rtx' in gpu_lower:
+                            inferred_brand = 'NVIDIA'
+                        elif 'radeon' in gpu_lower or 'rx' in gpu_lower:
+                            inferred_brand = 'AMD'
+
+                    # Check if the brand matches or wasn't specified
+                    if not brand or (inferred_brand == brand):
                         if vram:
                             vram_match = re.search(r'(\d+)\s*gb', gpu_lower)
                             if vram_match and int(vram_match.group(1)) == int(vram):
-                                return gpu, brand, model_number, vram, model_number
+                                return gpu, inferred_brand, model_number, vram, model_number
                         else:
-                            return gpu, brand, model_number, vram, model_number
+                            return gpu, inferred_brand, model_number, vram, model_number
 
     return "Unknown", brand, model_numbers[0] if model_numbers else None, vram, None
 
@@ -173,7 +191,7 @@ def fetch_and_parse_description(url):
         return ""
 
 def process_unknown_gpus(df, gpu_models):
-    unknown_mask = ((df['extracted_model'].isna()) | (df['extracted_model'] == '')) & (df['model'] != 'Skipped')
+    unknown_mask = (df['model'] == 'Unknown')
     unknown_df = df[unknown_mask]
 
     print(f"Processing {len(unknown_df)} GPUs without extracted model")
@@ -225,7 +243,9 @@ def main():
         df = fetch_and_process_data(gpu_models)
         output_filename = "gpu_listings.csv"
 
-    initial_known_count = df['model'].value_counts().drop(['Unknown', 'Skipped'], errors='ignore').sum()
+    initial_total = len(df)
+    df = df[df['model'] != 'Skipped']  # Remove skipped GPUs
+    initial_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
     print(f"Initially matched models: {initial_known_count} out of {len(df)}")
 
     # Process GPUs without extracted model
@@ -235,16 +255,15 @@ def main():
     df.to_csv(output_filename, index=False)
     print(f"Data saved to {output_filename}")
 
-    final_known_count = df['model'].value_counts().drop(['Unknown', 'Skipped'], errors='ignore').sum()
+    final_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
     total_models = len(df)
-    skipped_count = (df['model'] == 'Skipped').sum()
 
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
     print(df.head())
     print(f"Final successfully matched models: {final_known_count} out of {total_models} ({final_known_count/total_models:.2%})")
-    print(f"Skipped items: {skipped_count}")
+    print(f"Skipped items removed: {initial_total - len(df)}")
     print(f"Improvement: {final_known_count - initial_known_count} additional models matched")
-    print("Hello")
+
 if __name__ == "__main__":
     main()

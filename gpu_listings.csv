@@ -1,202 +1,411 @@
-heading,price,model,extracted_brand,extracted_model,extracted_vram,matched_model_number,match_count,canonical_url
-XFX Radeon RX 6950 XT Speedster MERC 319 Skjermkort GPU Grafikkort,6900,Radeon RX 6950 XT 16 GB,AMD,rx 6950 xt,,rx 6950 xt,1,https://www.finn.no/recommerce/forsale/item/371599734
-GamingPoint CHARGER RGB,4399,Unknown,,,,,0,https://www.finn.no/bap/webstore/ad.html?finnkode=374109514
-MSI GeForce RTX 3050 VENTUS 2X XS 8G skjermkort,1950,GeForce RTX 3050 8 GB,NVIDIA,rtx 3050,,rtx 3050,1,https://www.finn.no/recommerce/forsale/item/376089861
-RX 6900 XT 16 Gb XFX Merc Skjermkort,4500,Radeon RX 6900 XT 16 GB,AMD,rx 6900 xt,16,rx 6900 xt,1,https://www.finn.no/recommerce/forsale/item/376046433
-RTC Asus tuf 3070 Skjermkort,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/recommerce/forsale/item/376030780
-PowerColor Radeon RX 6600 Fighter,1499,Radeon RX 6600 8 GB,AMD,rx 6600,,rx 6600,1,https://www.finn.no/bap/webstore/ad.html?finnkode=365695264
-GeForce GTX 1660 Super 6gb - Skjermkort,1000,GeForce GTX 1660 SUPER 6 GB,NVIDIA,gtx 1660 super,6,gtx 1660 super,1,https://www.finn.no/recommerce/forsale/item/375977734
-"Matrox G450 quad skjermkort for 4 skjermer, tilsalgs",1000,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/58351594
-Lenovo NVIDIA RTX A2000  6 G Grafikkort Skjermkort GPU,2800,Unknown,NVIDIA,,,,0,https://www.finn.no/recommerce/forsale/item/366113912
-XFX Radeon RX 7700 XT Qick 319 12GB skjermkort,4400,Radeon RX 7700 XT 12 GB,AMD,rx 7700 xt,12,rx 7700 xt,1,https://www.finn.no/recommerce/forsale/item/375822463
-Ubrukt GeForce GTX 1080 X skjermkort,1200,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,1,https://www.finn.no/recommerce/forsale/item/366034340
-HP ELITEDESK 705 G3 MINI / AMD A10-8770E R7 / RADEON GRAPHICS / 8GB / 128 GB SSD,1199,Unknown,AMD,705,8,,0,https://www.finn.no/bap/webstore/ad.html?finnkode=355081394
-Skjermkort XFX AMD Radeon RX 6750 XT Core Gaming,4000,Radeon RX 6750 XT 12 GB,AMD,rx 6750 xt,,rx 6750 xt,1,https://www.finn.no/recommerce/forsale/item/375263733
-Samsung Radeon Rx Vega 64 8gb graphics card/ skjermkort,1900,Unknown,AMD,,8,,0,https://www.finn.no/recommerce/forsale/item/345311634
-Selger en top geforce GTX 780 Ti skjermkort med vannblokk,1400,Unknown,NVIDIA,gtx 780 ti,,,0,https://www.finn.no/recommerce/forsale/item/218966099
-RX 6700 XT Skjermkort,3250,Radeon RX 6700 XT 12 GB,AMD,rx 6700 xt,,rx 6700 xt,1,https://www.finn.no/recommerce/forsale/item/365180872
-Zotak GeForce GTX 1070 Mini 8Gb skjermkort,1000,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,8,gtx 1070,1,https://www.finn.no/recommerce/forsale/item/362508387
-Skjermkort - Sapphire Nitro+ RX570 8GB,1000,Unknown,AMD,rx 570,8,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=334872505
-nvidia skjermkort,2300,Unknown,NVIDIA,,,,0,https://www.finn.no/recommerce/forsale/item/373916772
-"Hovedkort, CPU og Skjermkort selges",1600,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=373740208
-Rtx 2080super phantom skjermkort,2000,GeForce RTX 2080 SUPER 8 GB,NVIDIA,rtx 2080 super,,rtx 2080 super,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373724105
-Skjermkort - Sapphire Pulse RX 580 8GB,1000,Radeon RX 580 8 GB,AMD,rx 580,8,rx 580,1,https://www.finn.no/bap/forsale/ad.html?finnkode=328239638
-Salg på palit 3070 rtx skjermkort! Salg!,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373202202
-Gainward Salg på 3070 rtx skjermkort! Salg!,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373202118
-Selger 9 stk skjermkort!,2500,Multi,AMD,"['rx 5700', '1080 ti']",,"['rx 5700', '1080 ti']",2,https://www.finn.no/bap/forsale/ad.html?finnkode=301727097
-Selger kabinett samt power supply og skjermkort. Det medfører et hovedkort.,2000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=372850314
-GTX skjermkort,2000,Multi,NVIDIA,"['gtx 1660 super', 'rtx 3060 ti']",,"['gtx 1660 super', 'rtx 3060 ti']",2,https://www.finn.no/bap/forsale/ad.html?finnkode=343360620
-Skjermkort MSI GeForce GTX 1070 ARMOR 8G OC,1100,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=343030548
- B250 mining hovedkort 12 skjermkort [CPU G3900 MEDFØLGER] ,3600,Multi,,"['3060 ti', '3070', '3070 ti', '3080']",,"['3060 ti', '3070', '3070 ti', '3080']",4,https://www.finn.no/bap/forsale/ad.html?finnkode=236227325
-AMD RX skjermkort; 5600 XT og 6800 XT,1300,Multi,AMD,"['5600 xt', '6800 xt']",,"['5600 xt', '6800 xt']",2,https://www.finn.no/bap/forsale/ad.html?finnkode=362401743
-Skjermkort,1500,Radeon RX 5700 8 GB,AMD,rx 5700,,rx 5700,1,https://www.finn.no/bap/forsale/ad.html?finnkode=371591158
-Skjermkort GTX 1070TI 8GB,1200,GeForce GTX 1070 Ti 8 GB,NVIDIA,gtx 1070 ti,8,gtx 1070 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=371595804
-Skjermkort Nvidia Titan X 12 GB,2200,Unknown,NVIDIA,,12,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=254206491
-Skjermkort Gigabyte RTX 3070ti,5800,GeForce RTX 3070 Ti 8 GB,NVIDIA,rtx 3070 ti,,rtx 3070 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=349072622
-Quadro P2200 skjermkort,3500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=370254835
-Skjermkort - GeForce GTX 1070,2000,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=369908670
-EVGA GEFORCE RTX 2070 Super XC Ultra Skjermkort,2750,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,1,https://www.finn.no/bap/forsale/ad.html?finnkode=369797821
-Ati rage fury maxx agp skjermkort,2000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=333629803
-Skjermkort Nvidia RTX 3080 OEM - 10 gb,7500,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,10,rtx 3080,1,https://www.finn.no/bap/forsale/ad.html?finnkode=369442800
-2080 skjermkort,1800,GeForce RTX 2080 8 GB,NVIDIA,2080,,2080,1,https://www.finn.no/bap/forsale/ad.html?finnkode=369063129
-2400w psu. 1200w psu. 750w psu. Hovedkort. Skjermkort etc,2000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=368419172
-Viftefrie skjermkort,1180,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=350424764
-Iwill 4U-BTC-8 Mining rig klar for skjermkort,4000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=305845299
-Asus 3070 Turbo skjermkort til salgs,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367134296
-PNY 3070 skjermkort til salgs,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367134036
-Zotac 3060TI skjermkort til salgs,3000,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367133770
-MSI GTX 1080 SEAHAWK væskeavkjølt skjermkort,1600,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,1,https://www.finn.no/bap/forsale/ad.html?finnkode=354559137
-GIGABYTE GeForce RTX 3070 AORUS MASTER 8GB GRAFIKKORT,3900,GeForce RTX 3070 8 GB,NVIDIA,rtx 3070,8,rtx 3070,1,https://www.finn.no/recommerce/forsale/item/374780709
-"STRØKEN iMac 21,5 late 2013, firekjærners i5, 8 GB RAM, 1 TB disk - SPREK iMAC!",3500,Unknown,,2013,8,,0,https://www.finn.no/recommerce/forsale/item/331444196
-"iMac 27 late 2012 med splitter ny Samsung SSD, Sonoma - grom Mac!",3900,Unknown,,2012,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=368677334
-XFX Radeon RX 6800 XT 16GB Speedster MERC 319,5000,Radeon RX 6800 XT 16 GB,AMD,rx 6800 xt,16,rx 6800 xt,1,https://www.finn.no/recommerce/forsale/item/375364241
-Palit Geforce RTX 2060 GamingPRO OC,1200,Multi,NVIDIA,"['rtx 2060', 'rtx 2060']",,"['rtx 2060', 'rtx 2060']",2,https://www.finn.no/recommerce/forsale/item/376248746
-Asus GeForce ROG Strix RTX 2070 OC grafikkort 8G,2500,GeForce RTX 2070 8 GB,NVIDIA,rtx 2070,,rtx 2070,1,https://www.finn.no/recommerce/forsale/item/375233518
-RTX 2060 6GB •RESERVERT•,1109,GeForce RTX 2060 6 GB,NVIDIA,rtx 2060,6,rtx 2060,1,https://www.finn.no/recommerce/forsale/item/375321896
-GeForce RTX 3060 Ti VENTUS 2X OC,3500,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,,rtx 3060 ti,1,https://www.finn.no/recommerce/forsale/item/376208776
-ASUS ROG Strix GeForce GTX 1080Ti OC 11GB,2250,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,11,gtx 1080 ti,1,https://www.finn.no/recommerce/forsale/item/375531879
-Gigabyte Radeon RX 5700 XT Gaming OC 8GB,1500,Radeon RX 5700 XT 8 GB,AMD,rx 5700 xt,8,rx 5700 xt,1,https://www.finn.no/recommerce/forsale/item/376193084
-Gigabyte RTX 3080 10Gb Eagle OC,5000,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,10,rtx 3080,1,https://www.finn.no/recommerce/forsale/item/374149791
-RTX 3080Ti 12 Gb Gigabyte Gaming OS,6000,GeForce RTX 3080 Ti 12 GB,NVIDIA,rtx 3080 ti,12,rtx 3080 ti,1,https://www.finn.no/recommerce/forsale/item/374978231
-ASUS Dual Radeon RX 7700 XT OC 12 GB,4990,Radeon RX 7700 XT 12 GB,AMD,rx 7700 xt,12,rx 7700 xt,1,https://www.finn.no/recommerce/forsale/item/376106515
-3060 Ti,3000,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,1,https://www.finn.no/recommerce/forsale/item/375645313
-Sett for Mining Rig,1500,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/347943865
-GTX 1080 fra Asus Rog Strix - Perfekt for gamingriggen,2499,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,1,https://www.finn.no/recommerce/forsale/item/375206544
-Geforce RTX 2070 Super,2500,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,1,https://www.finn.no/recommerce/forsale/item/374788058
-Asus GeForce RTX 3080 Ti TUF Gaming OC,7499,GeForce RTX 3080 Ti 12 GB,NVIDIA,rtx 3080 ti,,rtx 3080 ti,1,https://www.finn.no/recommerce/forsale/item/375495688
-selger datamaskin for deler,1499,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/375144232
-Asus RTX 3060 TI duo OC,3200,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,,rtx 3060 ti,1,https://www.finn.no/recommerce/forsale/item/375453263
-ASUS RTX 4060 TI DUAL OC 8GB,4500,GeForce RTX 4060 Ti 8 GB,NVIDIA,rtx 4060 ti,8,rtx 4060 ti,1,https://www.finn.no/recommerce/forsale/item/375419768
-Sett for Mining Rig,1300,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=344344145
-Sett for Mining Rig,1500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=344344567
-Asus strix gtx1070 8g gaming,1500,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373098923
-RTX 2080 ti,3250,GeForce RTX 2080 Ti 11 GB,NVIDIA,rtx 2080 ti,,rtx 2080 ti,1,https://www.finn.no/recommerce/forsale/item/374352532
-Gainward GeForce RTX 2060 SUPER Ghost 8gb,2600,GeForce RTX 2060 SUPER 8 GB,NVIDIA,rtx 2060 super,8,rtx 2060 super,1,https://www.finn.no/recommerce/forsale/item/374632603
-MSI Geforce gtx 1080ti,2000,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,,gtx 1080 ti,1,https://www.finn.no/recommerce/forsale/item/375744279
-Radeon RX 6600 - 8 GB,2700,Radeon RX 6600 8 GB,AMD,rx 6600,8,rx 6600,1,https://www.finn.no/recommerce/forsale/item/374523080
-Nvidia Geforce RTX 3060 TI,3200,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,,rtx 3060 ti,1,https://www.finn.no/recommerce/forsale/item/374506297
-RTX 3080 HP 10GB,4650,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,10,rtx 3080,1,https://www.finn.no/recommerce/forsale/item/375377822
-PNY NVIDIA RTX  A2000 6GB,2800,Unknown,NVIDIA,,6,,0,https://www.finn.no/recommerce/forsale/item/374702676
-CPU hovedkort osv selges,1500,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/376052489
-Sett for Mining Rig,1400,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=342919998
-ASUS DUAL GeForce RTX 4060 TI OC,5700,GeForce RTX 4060 Ti 8 GB,NVIDIA,rtx 4060 ti,,rtx 4060 ti,1,https://www.finn.no/recommerce/forsale/item/375986952
-Gtx880m 4gb og kjøleplate for asus g750 serien,1000,Unknown,NVIDIA,,4,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=237636385
-GeForce RTX 3060 Ghost,2750,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,,rtx 3060,1,https://www.finn.no/recommerce/forsale/item/373613731
-Mac Pro 4.1 / 5.1,3999,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/344220591
-Lenovo hovedkort:  i5-6400/ 8GB DDR4/ Gtx 960,1600,Unknown,NVIDIA,6400,8,,0,https://www.finn.no/recommerce/forsale/item/375955893
-Hp Z600 workstation,2000,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/325177640
-MSI Radeon 6600,2250,Radeon RX 6600 8 GB,AMD,6600,,6600,1,https://www.finn.no/bap/forsale/ad.html?finnkode=370405331
-Geforce RTX 3060 12G,3500,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,,rtx 3060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=369463637
-Gigabyte Geforce GTX 1080 WINDFORCE OC 8GB,1500,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,8,gtx 1080,1,https://www.finn.no/recommerce/forsale/item/375712742
-RX 6950 XT || som ny,6000,Radeon RX 6950 XT 16 GB,AMD,rx 6950 xt,,rx 6950 xt,1,https://www.finn.no/recommerce/forsale/item/376118576
-DELL Precision T7400 workstation,1500,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/325180947
-Sapphire Pure Radeon RX 7700 XT 12GB - Grafikkort,4500,Radeon RX 7700 XT 12 GB,AMD,rx 7700 xt,12,rx 7700 xt,1,https://www.finn.no/recommerce/forsale/item/374506695
-Mac fra 2011,1000,Unknown,,2011,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=369963339
-GeForce RTX™ 3060 Ti GAMING OC PRO 8G (rev. 2.0),3500,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=371725136
-2 stk RTX 2070 Super og 1 stk RTX 2080,1900,Multi,NVIDIA,"['rtx 2070 super', 'rtx 2080']",,"['rtx 2070 super', 'rtx 2080']",2,https://www.finn.no/recommerce/forsale/item/376184828
-Nvidia Graffikkort RTX 2060S 8GB!,2200,GeForce RTX 2060 SUPER 8 GB,NVIDIA,rtx 2060 super,8,rtx 2060 super,1,https://www.finn.no/recommerce/forsale/item/333070541
-RTX geforce 3070 gpu! Salg!!,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373201615
-ASUS Radeon RX6600XT DUAL OC,3750,Radeon RX 6600 XT 8 GB,AMD,rx 6600 xt,,rx 6600 xt,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367271764
-RTX 2070 super! Salg!,2500,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373202303
-"Apple iMac 21.5"" -  Late 2015",2500,Unknown,,2015,,,0,https://www.finn.no/recommerce/forsale/item/376217340
-"ASUS GeForce ROG STRIX 2080 SUPER OC, 8Gb",2799,GeForce RTX 2080 SUPER 8 GB,NVIDIA,2080 super,8,2080 super,1,https://www.finn.no/bap/forsale/ad.html?finnkode=366982826
-ASUS Radeon RX 6650 XT Dual OC,2800,Radeon RX 6650 XT 8 GB,AMD,rx 6650 xt,,rx 6650 xt,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367667852
-3060 Geforce Rtx,2900,GeForce RTX 3060 12 GB,NVIDIA,3060,,3060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=372663343
-ASUS GeForce RTX 2080 SUPER ROG STRIX OC - 8GB,3000,GeForce RTX 2080 SUPER 8 GB,NVIDIA,rtx 2080 super,8,rtx 2080 super,1,https://www.finn.no/recommerce/forsale/item/374896144
-XFX Radeon RX590 8GB,1500,Radeon RX 590 8 GB,AMD,rx 590,8,rx 590,1,https://www.finn.no/bap/forsale/ad.html?finnkode=295746765
-"Mining rig, komplett. Ramme, HK, CPU, RAM, HDD, GPU'er, ny PSU",2700,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=341635118
-Acer Nitro N50-640 (LES BESKRIVELSE),1000,Unknown,,640,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=372925719
-Raedon 6900XT,6700,Radeon RX 6900 XT 16 GB,AMD,6900 xt,,6900 xt,1,https://www.finn.no/bap/forsale/ad.html?finnkode=359441264
-ZotacGaming Geforce RTX 3060 Twin Edge 12gb,2750,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,12,rtx 3060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=360210206
-Acer Nitro N50-600 Gaming,2500,Unknown,,600,,,0,https://www.finn.no/recommerce/forsale/item/375123025
-Asus B250 Mining Expert 19 GPU hovedkort m/prosessor,6500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=245319298
-HP ProDesk 600 G1 SFF med Windows pro versjon,1299,Unknown,,600,,,0,https://www.finn.no/recommerce/forsale/item/197103206
-"Intel i7-7700, ASUS ROG Strix B250F Gaming, Ballistix 16GB RAM",2500,Unknown,,7700,16,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=370497980
-ZOTAC GAMING GeForce RTX 3080 Trinity,6500,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,,rtx 3080,1,https://www.finn.no/bap/forsale/ad.html?finnkode=343127039
-Amd Radeon RX 6800 16GB,5000,Radeon RX 6800 16 GB,AMD,rx 6800,16,rx 6800,1,https://www.finn.no/recommerce/forsale/item/375099773
-Gaming Intel i5 RTX 260 6 GB,3500,Unknown,NVIDIA,rtx 260,6,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371413666
-Mining gpu-rig,2500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=341636231
-RED DRAGON RX 6800XT 16GB GDDR6 RAM,5000,Radeon RX 6800 XT 16 GB,AMD,rx 6800 xt,16,rx 6800 xt,1,https://www.finn.no/bap/forsale/ad.html?finnkode=341971152
-"3080 Suprim X 10GB LHR (Mai 2022), leveres Oslo & Vestfold",5500,GeForce RTX 3080 10 GB,NVIDIA,3080,10,3080,1,https://www.finn.no/recommerce/forsale/item/376140562
-Hp Omen 880-109no,5000,Unknown,,880,,,0,https://www.finn.no/recommerce/forsale/item/340984589
-Selger et MSI RTX 3070 Suprim X 8G LHR grafikk-kort.,4500,GeForce RTX 3070 8 GB,NVIDIA,rtx 3070,,rtx 3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373612728
-Nvidia Geforce RTX 3070 Ti Founders Edition,6500,GeForce RTX 3070 Ti 8 GB,NVIDIA,rtx 3070 ti,,rtx 3070 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=372856549
-RTX 2060 12GB,2200,GeForce RTX 2060 12 GB,NVIDIA,rtx 2060,12,rtx 2060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=372209649
-Gainward Ghost GeForce GTX 1660Ti,1200,GeForce GTX 1660 Ti 6 GB,NVIDIA,gtx 1660 ti,,gtx 1660 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=344004361
-"Grafikkort EVGA 3070 stor utgave, pent brukt!",4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373201202
-RTX 3060 zotac 12gb,2990,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,12,rtx 3060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=306155637
-HP Z420 Workstation LJ449AV selges som delemaskin,1300,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=367524340
-ASUS Radeon RX 5700 XT ROG Strix OC,2000,Radeon RX 5700 XT 8 GB,AMD,rx 5700 xt,,rx 5700 xt,1,https://www.finn.no/bap/forsale/ad.html?finnkode=356371536
-Acer Predator G3-605 | Oppgradert,2500,Unknown,,605,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=372726345
-Selges grunnet overgang til annen,2500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=372489246
-Rtx 3060 Ti 8gb MSI,3500,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,8,rtx 3060 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=370643612
-Fractal Design Node 202 med strømforsyning,1900,Unknown,,202,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371517170
-Old School Gamer,2700,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/375129972
-Gaming setup,7500,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/376023380
-"iMac 21,5"" 4K Retina",4000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371160726
-"HP Z440 Workstation, Intel Xeon E5-1630 v3 @ 3.70GHz, 32 GB ECC, 250GB SSD",3500,Unknown,,1630,32,,0,https://www.finn.no/recommerce/forsale/item/373965505
-ASUS GeForce GTX 1070 ROG Strix Gaming,1500,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367355584
-NVIDIA GeForce 1080 SeaHawk X,2000,GeForce GTX 1080 8 GB,NVIDIA,1080,,1080,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373835804
-Sapphire RX 590 Special Edition 8GB GDDR5 Graphics Card,1150,Radeon RX 590 8 GB,AMD,rx 590,8,rx 590,1,https://www.finn.no/bap/forsale/ad.html?finnkode=368624257
-Asus ROG-STRIX-RX580-T8G-GAMING,1200,Radeon RX 580 8 GB,AMD,rx 580,,rx 580,1,https://www.finn.no/bap/forsale/ad.html?finnkode=370138656
-Msi Nightblade MI3,3000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371546209
-"Mac Pro (mid 2010) og Apple Cinema 30""",3600,Unknown,,2010,,,0,https://www.finn.no/recommerce/forsale/item/375074266
-SilverStone Sugo SG15,1399,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=368633429
-Asus Dual Radeon RX 7900 GRE OC,6600,Radeon RX 7900 GRE 16 GB,AMD,rx 7900,,rx 7900,1,https://www.finn.no/bap/forsale/ad.html?finnkode=373345714
-Rog Strix RX580 T8G Gaming,1200,Radeon RX 580 8 GB,AMD,rx 580,,rx 580,1,https://www.finn.no/bap/forsale/ad.html?finnkode=371834349
-Msi 2060 Gaming Z,2500,Multi,,"['2060', '2060']",,"['2060', '2060']",2,https://www.finn.no/bap/forsale/ad.html?finnkode=262624107
-PowerColor Red Dragon Radeon™ RX 570 4GB - Nytt kort,1200,Unknown,AMD,rx 570,4,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=248292079
-Fujitsu Esprimo Windows11/Office2021 Nvidia 1050/Intel Q8300/8Gb RAM/360Gb SSD,1799,Unknown,NVIDIA,1050,8,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=211030768
-Nvidia Quadro 6000 6GB,1000,Unknown,NVIDIA,6000,6,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=366906898
-EVGA GEFORCE GTX 1080Ti FTW edition,4500,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,,gtx 1080 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=368491322
-Mining rig,2000,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/376018596
-MSI GeForce RTX 3060 VENTUS 2X OC 12GB,2750,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,12,rtx 3060,1,https://www.finn.no/recommerce/forsale/item/348033581
-AMD radeon RX 6500 XT,1300,Radeon RX 6500 XT 4 GB,AMD,rx 6500 xt,,rx 6500 xt,1,https://www.finn.no/bap/forsale/ad.html?finnkode=344551685
-"iMac (Retina 5K, 27-inch, Late 2015) 16 GB Ram, QuadCore 4GHz i7 til salgs",8000,Unknown,,2015,16,,0,https://www.finn.no/recommerce/forsale/item/373639380
-GAMING PAKKE SELGES!!!!,8000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=372202786
-Miningrig uten GPU,1000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371240068
-MSI gtx 1070 8gb,1000,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,8,gtx 1070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=374042153
-"InWin GRone Full Tower Svart RGB  i5 7400 3,0GHz, 16GB, 128GB SSD, 1TB",3800,Unknown,,7400,16,,0,https://www.finn.no/recommerce/forsale/item/375629474
-Gigabyte GTX 1080TI Gaming OC 11GB,2000,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,11,gtx 1080 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=372529181
-"Lenovo V520S, Intel i5-7400, DDR4-8gb, SSD M2-128Gb, HDD-1Tb, Wi-Fi, Win 10 Pro",1800,Unknown,,7400,8,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=361959373
-Diverse Data deler,4000,GeForce GTX 1060 6 GB,NVIDIA,gtx 1060,6,gtx 1060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=368072114
-MSI Radon R9 380 Gaming 4gb,2390,Unknown,,380,4,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=298403201
-NZXT Gaming datamaskin,4500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=360236019
-"HP / ACER 16gb ddr4, i5 11400f, gtx 1660S, m2 ssd og windows 11",4995,Unknown,NVIDIA,gtx 1660 super,16,,0,https://www.finn.no/recommerce/forsale/item/375987420
-"6GPU Mining Rig Startpakke (Ramme, Hovedkort, RAM, SSD, CPU, Risere og Vifter)",3499,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=253721118
-NVIDIA GeForce RTX 2070 MSI Armor 8GB,2499,GeForce RTX 2070 8 GB,NVIDIA,rtx 2070,8,rtx 2070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=329969572
-"Retro Hp, Win98, Pentium 3, Nvidia tnt 2 +++",2300,Unknown,NVIDIA,,,,0,https://www.finn.no/recommerce/forsale/item/375337808
-"Mac Pro 5,1 (mid 2010), 2 x 3,46Ghz CPU, 64GB RAM, 1TB SSD, 6TB backupdisk",5000,Unknown,,2010,64,,0,https://www.finn.no/recommerce/forsale/item/375239619
-Baby AT-kabinett m/ Socket 7 hovedkort,2000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=370145166
-HP ProDesk,2000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=368963933
-GeForce GTX 1070 Quick Silver 8G OC,1400,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,1,https://www.finn.no/bap/forsale/ad.html?finnkode=370424423
-"MSI GeForce GTX 1080 Gaming X! Lite brukt, selges rimelig.",2400,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,1,https://www.finn.no/bap/forsale/ad.html?finnkode=190878936
-Nvidia PNY Quadro P5000 16GB,7500,Unknown,NVIDIA,,16,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=268511754
-"16gb ddr4, i5 11400f, gtx 1660S, m2 ssd og windows 11 licens.",4899,Unknown,NVIDIA,gtx 1660 super,16,,0,https://www.finn.no/recommerce/forsale/item/364004038
-"ASUS TUF SABERTOOTH X58, i7 960, 12GB Kingston DDR3",1200,Unknown,,960,12,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=370342064
-Hp z4 G4 Server/workstation i9-7900x,8000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=362483988
-"Intel i9-10900X Prosessor, LGA2066",4500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=370581149
-Intel i9-10900X Prosessor LGA2066 (Uåpnet),5000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=370581148
-Datamaskin sett,6500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=358981520
-"MASSE datautstyr og deler - RAM, CPUer, GPUer, gamingtastatur, headset, mus++++",1990,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=333825410
-Ekstern GPU m thunderbolt,1599,Multi,NVIDIA,"['1080 ti', '1080 ti']",,"['1080 ti', '1080 ti']",2,https://www.finn.no/bap/forsale/ad.html?finnkode=351376977
-"Lenovo ThinkCentre med I5-8500T, 16Gb RAM, 256Gb NVME",3900,Unknown,,,16,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=369276174
-"Brukt Gaming maskin i3-7100 3.9Ghz, 8 GB RAM, 2x 256 GB SSD uten lisens",2999,GeForce GTX 1060 6 GB,NVIDIA,gtx 1060,6,gtx 1060,1,https://www.finn.no/bap/forsale/ad.html?finnkode=341981334
-Selvbygd datamaskin,2900,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/320903793
-"Mac Pro 4.1 (5,1)",3500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=222436251
-Lenovo IdeaCentre Type 90DD - oppgradert ram og lagring,3700,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=317169899
-"STRØKEN iMac 21,5 late 2013, Sonoma - SPREK iMAC! NY REDUSERT PRIS!",3200,Unknown,,2013,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=359960969
-"Nytt 4090 TUF OC, 6900xt,3060ti/70ti,  3070,PNY3070, turbo 3070, Zotac 3070ti",3250,Multi,,"['6900 xt', '3060 ti', '3070', '3070', '3070 ti', '4090']",,"['6900 xt', '3060 ti', '3070', '3070', '3070 ti', '4090']",6,https://www.finn.no/bap/forsale/ad.html?finnkode=368437409
-"Mac Pro 5.1 (ssd, 40Gb RAM, 6/12 3.46GHz, gtx 680 og Radeon HD 7970",6000,Unknown,NVIDIA,gtx 680,40,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371187039
-Helt nytt (Uåpnat) RTX 3080 med pen RGB,5500,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,,rtx 3080,1,https://www.finn.no/recommerce/forsale/item/376030511
-"Windows XP pakke, alt inkludert.",1000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=373290453
-MineBox 8 Large 70mm miner server box/case,6500,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=306212269
-IBM Aptiva P233mhz med 3dfx Voodoo 1,3000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=371075547
-"Asus 27"" 4K gamingskjerm ROG Strix XG27UQ",5500,Radeon RX 5700 8 GB,NVIDIA,rx 5700,,rx 5700,1,https://www.finn.no/bap/forsale/ad.html?finnkode=372724808
-ASUS ROG Strix B550-E GAMING Hovedkort,2275,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=374156380
-6U NAS Kabinett med SAS backplane - Passer i 60cm rack!,6000,GeForce GTX 1080 Ti 11 GB,NVIDIA,1080 ti,,1080 ti,1,https://www.finn.no/bap/forsale/ad.html?finnkode=367447424
-BELKIN Thunderbolt 3 Dock Plus,1400,Unknown,,,,,0,https://www.finn.no/recommerce/forsale/item/374978883
-Komplett Gamer - 144Hz Edition,8000,Unknown,,,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=368798902
-2 x Geforce GTX 680 kort,1500,Unknown,NVIDIA,gtx 680,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=367180380
-iMac 27 late 2012 med Sonoma - klar for 2024! Perfekt studentmaskin!,2500,Unknown,,2012,,,0,https://www.finn.no/recommerce/forsale/item/354839565
-"iMac 21,5 mid 2011, SSD og Sonoma OS installert - rask maskin!",2900,Unknown,,2011,,,0,https://www.finn.no/bap/forsale/ad.html?finnkode=359945325
+heading,price,model,extracted_brand,extracted_model,extracted_vram,matched_model_number,canonical_url
+XFX Radeon RX 6950 XT Speedster MERC 319 Skjermkort GPU Grafikkort,6900,Radeon RX 6950 XT 16 GB,AMD,rx 6950 xt,,rx 6950 xt,https://www.finn.no/recommerce/forsale/item/371599734
+GamingPoint CHARGER RGB,4399,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=374109514
+MSI GeForce RTX 3050 VENTUS 2X XS 8G skjermkort,1950,GeForce RTX 3050 8 GB,NVIDIA,rtx 3050,,rtx 3050,https://www.finn.no/recommerce/forsale/item/376089861
+RX 6900 XT 16 Gb XFX Merc Skjermkort,4500,Radeon RX 6900 XT 16 GB,AMD,rx 6900 xt,16,rx 6900 xt,https://www.finn.no/recommerce/forsale/item/376046433
+RTC Asus tuf 3070 Skjermkort,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/recommerce/forsale/item/376030780
+PowerColor Radeon RX 6600 Fighter,1499,Radeon RX 6600 8 GB,AMD,rx 6600,,rx 6600,https://www.finn.no/bap/webstore/ad.html?finnkode=365695264
+GeForce GTX 1660 Super 6gb - Skjermkort,1000,GeForce GTX 1660 SUPER 6 GB,NVIDIA,gtx 1660 super,6,gtx 1660 super,https://www.finn.no/recommerce/forsale/item/375977734
+"Matrox G450 quad skjermkort for 4 skjermer, tilsalgs",1000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/58351594
+Lenovo NVIDIA RTX A2000  6 G Grafikkort Skjermkort GPU,2800,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/366113912
+Custom Gaming PC Pakke (Kids-edition),5899,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=340479768
+XFX Radeon RX 7700 XT Qick 319 12GB skjermkort,4400,Radeon RX 7700 XT 12 GB,AMD,rx 7700 xt,12,rx 7700 xt,https://www.finn.no/recommerce/forsale/item/375822463
+HP Omen 25L Gaming PC selges uten skjermkort,3000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375685751
+Ubrukt GeForce GTX 1080 X skjermkort,1200,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,https://www.finn.no/recommerce/forsale/item/366034340
+HP ELITEDESK 705 G3 MINI / AMD A10-8770E R7 / RADEON GRAPHICS / 8GB / 128 GB SSD,1199,Unknown,AMD,705,8,,https://www.finn.no/bap/webstore/ad.html?finnkode=355081394
+"Acer Kraftig Gaming Pc i5 (11) generasjon,  16GB Ram, 512GB SSD, 4GB skjermkort",3799,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375598849
+Skjermkort XFX AMD Radeon RX 6750 XT Core Gaming,4000,Radeon RX 6750 XT 12 GB,AMD,rx 6750 xt,,rx 6750 xt,https://www.finn.no/recommerce/forsale/item/375263733
+Samsung Radeon Rx Vega 64 8gb graphics card/ skjermkort,1900,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/345311634
+Gaming PC Pakke - Med garanti! (30% Rabatt),1999,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=350360758
+Selger en top geforce GTX 780 Ti skjermkort med vannblokk,1400,Unknown,NVIDIA,gtx 780 ti,,,https://www.finn.no/recommerce/forsale/item/218966099
+RX 6700 XT Skjermkort,3250,Radeon RX 6700 XT 12 GB,AMD,rx 6700 xt,,rx 6700 xt,https://www.finn.no/recommerce/forsale/item/365180872
+Zotak GeForce GTX 1070 Mini 8Gb skjermkort,1000,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,8,gtx 1070,https://www.finn.no/recommerce/forsale/item/362508387
+Gaming PC-er (20% PÅ ALLE PC-ER!) 5-ÅRS GARANTI,2490,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=362588410
+Skjermkort - Sapphire Nitro+ RX570 8GB,1000,Unknown,AMD,rx 570,8,,https://www.finn.no/bap/forsale/ad.html?finnkode=334872505
+nvidia skjermkort,2300,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/373916772
+"Hovedkort, CPU og Skjermkort selges",1600,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373740208
+Gaming PC-er (20% PÅ ALLE PC-ER!) 5-ÅRS GARANTI,2490,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=362590536
+Rtx 2080super phantom skjermkort,2000,GeForce RTX 2080 SUPER 8 GB,NVIDIA,rtx 2080 super,,rtx 2080 super,https://www.finn.no/bap/forsale/ad.html?finnkode=373724105
+Skjermkort - Sapphire Pulse RX 580 8GB,1000,Radeon RX 580 8 GB,AMD,rx 580,8,rx 580,https://www.finn.no/bap/forsale/ad.html?finnkode=328239638
+Salg på palit 3070 rtx skjermkort! Salg!,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=373202202
+Gaming PC-er (20% PÅ ALLE PC-ER!) 5-ÅRS GARANTI,2490,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=362589930
+Gainward Salg på 3070 rtx skjermkort! Salg!,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=373202118
+Stasjonær Pc mangler skjermkort,3200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373034324
+Selger 9 stk skjermkort!,2500,Radeon RX 5700 8 GB,AMD,rx 5700,,rx 5700,https://www.finn.no/bap/forsale/ad.html?finnkode=301727097
+Gaming PC-er (20% PÅ ALLE PC-ER!) 5-ÅRS GARANTI,2490,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=362590224
+Selger kabinett samt power supply og skjermkort. Det medfører et hovedkort.,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372850314
+GTX skjermkort,2000,GeForce GTX 1660 SUPER 6 GB,NVIDIA,gtx 1660 super,,gtx 1660 super,https://www.finn.no/bap/forsale/ad.html?finnkode=343360620
+ASUS ROG GL10DH-NR061T Stasjonær pc selges RTX2060S skjermkort!,7500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=296442629
+Gaming PC-er (20% PÅ ALLE PC-ER!) 5-ÅRS GARANTI,2490,Unknown,,,,,https://www.finn.no/bap/webstore/ad.html?finnkode=362590135
+Skjermkort MSI GeForce GTX 1070 ARMOR 8G OC,1100,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,https://www.finn.no/bap/forsale/ad.html?finnkode=343030548
+ B250 mining hovedkort 12 skjermkort [CPU G3900 MEDFØLGER] ,3600,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=236227325
+AMD RX skjermkort; 5600 XT og 6800 XT,1300,Radeon RX 5600 XT 6 GB,AMD,5600 xt,,5600 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=362401743
+Skjermkort,1500,Radeon RX 5700 8 GB,AMD,rx 5700,,rx 5700,https://www.finn.no/bap/forsale/ad.html?finnkode=371591158
+Skjermkort GTX 1070TI 8GB,1200,GeForce GTX 1070 Ti 8 GB,NVIDIA,gtx 1070 ti,8,gtx 1070 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=371595804
+Skjermkort Nvidia Titan X 12 GB,2200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=254206491
+Skjermkort Gigabyte RTX 3070ti,5800,GeForce RTX 3070 Ti 8 GB,NVIDIA,rtx 3070 ti,,rtx 3070 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=349072622
+Quadro P2200 skjermkort,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370254835
+Skjermkort - GeForce GTX 1070,2000,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,https://www.finn.no/bap/forsale/ad.html?finnkode=369908670
+EVGA GEFORCE RTX 2070 Super XC Ultra Skjermkort,2750,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,https://www.finn.no/bap/forsale/ad.html?finnkode=369797821
+Ati rage fury maxx agp skjermkort,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=333629803
+Skjermkort Nvidia RTX 3080 OEM - 10 gb,7500,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,10,rtx 3080,https://www.finn.no/bap/forsale/ad.html?finnkode=369442800
+2080 skjermkort,1800,GeForce RTX 2080 8 GB,NVIDIA,2080,,2080,https://www.finn.no/bap/forsale/ad.html?finnkode=369063129
+2400w psu. 1200w psu. 750w psu. Hovedkort. Skjermkort etc,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368419172
+Pc mangler skjermkort,3200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368297997
+Viftefrie skjermkort,1180,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=350424764
+Iwill 4U-BTC-8 Mining rig klar for skjermkort,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=305845299
+"Kraftig Lenovo Gaming PC i5(10) generasjon, 512GB  SSD, 16GB RAM, 4GB skjermkort",3499,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367372029
+Asus 3070 Turbo skjermkort til salgs,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=367134296
+PNY 3070 skjermkort til salgs,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=367134036
+Zotac 3060TI skjermkort til salgs,3000,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=367133770
+MSI GTX 1080 SEAHAWK væskeavkjølt skjermkort,1600,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,https://www.finn.no/bap/forsale/ad.html?finnkode=354559137
+GIGABYTE GeForce RTX 3070 AORUS MASTER 8GB GRAFIKKORT,3900,GeForce RTX 3070 8 GB,NVIDIA,rtx 3070,8,rtx 3070,https://www.finn.no/recommerce/forsale/item/374780709
+"STRØKEN iMac 21,5 late 2013, firekjærners i5, 8 GB RAM, 1 TB disk - SPREK iMAC!",3500,Unknown,,2013,8,,https://www.finn.no/recommerce/forsale/item/331444196
+PC til basic gaming,4000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374651884
+Intel NUC i3 Kraftig Mini pc,2499,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=331954730
+Nybygd gaming-pc,5800,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/373757685
+Gaming PC | Komplett Gamer Premium i170,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368249263
+Stasjonær PC - WIN11 aktivert med alle sikkerhetsfunksjoner,2500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375727257
+"iMac 27 late 2012 med splitter ny Samsung SSD, Sonoma - grom Mac!",3900,Unknown,,2012,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368677334
+XFX Radeon RX 6800 XT 16GB Speedster MERC 319,5000,Radeon RX 6800 XT 16 GB,AMD,rx 6800 xt,16,rx 6800 xt,https://www.finn.no/recommerce/forsale/item/375364241
+Palit Geforce RTX 2060 GamingPRO OC,1200,GeForce RTX 2060 6 GB,NVIDIA,rtx 2060,,rtx 2060,https://www.finn.no/recommerce/forsale/item/376248746
+Asus GeForce ROG Strix RTX 2070 OC grafikkort 8G,2500,GeForce RTX 2070 8 GB,NVIDIA,rtx 2070,,rtx 2070,https://www.finn.no/recommerce/forsale/item/375233518
+RTX 2060 6GB •RESERVERT•,1109,GeForce RTX 2060 6 GB,NVIDIA,rtx 2060,6,rtx 2060,https://www.finn.no/recommerce/forsale/item/375321896
+GeForce RTX 3060 Ti VENTUS 2X OC,3500,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,,rtx 3060 ti,https://www.finn.no/recommerce/forsale/item/376208776
+ASUS ROG Strix GeForce GTX 1080Ti OC 11GB,2250,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,11,gtx 1080 ti,https://www.finn.no/recommerce/forsale/item/375531879
+Gigabyte Radeon RX 5700 XT Gaming OC 8GB,1500,Radeon RX 5700 XT 8 GB,AMD,rx 5700 xt,8,rx 5700 xt,https://www.finn.no/recommerce/forsale/item/376193084
+Gigabyte RTX 3080 10Gb Eagle OC,5000,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,10,rtx 3080,https://www.finn.no/recommerce/forsale/item/374149791
+Stasjonær PC,3500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375403876
+RTX 3080Ti 12 Gb Gigabyte Gaming OS,6000,GeForce RTX 3080 Ti 12 GB,NVIDIA,rtx 3080 ti,12,rtx 3080 ti,https://www.finn.no/recommerce/forsale/item/374978231
+ASUS Dual Radeon RX 7700 XT OC 12 GB,4990,Radeon RX 7700 XT 12 GB,AMD,rx 7700 xt,12,rx 7700 xt,https://www.finn.no/recommerce/forsale/item/376106515
+3060 Ti,3000,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,https://www.finn.no/recommerce/forsale/item/375645313
+Sett for Mining Rig,1500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/347943865
+GTX 1080 fra Asus Rog Strix - Perfekt for gamingriggen,2499,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,https://www.finn.no/recommerce/forsale/item/375206544
+Geforce RTX 2070 Super,2500,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,https://www.finn.no/recommerce/forsale/item/374788058
+Asus GeForce RTX 3080 Ti TUF Gaming OC,7499,GeForce RTX 3080 Ti 12 GB,NVIDIA,rtx 3080 ti,,rtx 3080 ti,https://www.finn.no/recommerce/forsale/item/375495688
+selger datamaskin for deler,1499,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375144232
+Asus RTX 3060 TI duo OC,3200,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,,rtx 3060 ti,https://www.finn.no/recommerce/forsale/item/375453263
+ASUS RTX 4060 TI DUAL OC 8GB,4500,GeForce RTX 4060 Ti 8 GB,NVIDIA,rtx 4060 ti,8,rtx 4060 ti,https://www.finn.no/recommerce/forsale/item/375419768
+Sett for Mining Rig,1300,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=344344145
+Sett for Mining Rig,1500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=344344567
+Stasjonær pc,2000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375129369
+Asus strix gtx1070 8g gaming,1500,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,https://www.finn.no/bap/forsale/ad.html?finnkode=373098923
+RTX 2080 ti,3250,GeForce RTX 2080 Ti 11 GB,NVIDIA,rtx 2080 ti,,rtx 2080 ti,https://www.finn.no/recommerce/forsale/item/374352532
+Gainward GeForce RTX 2060 SUPER Ghost 8gb,2600,GeForce RTX 2060 SUPER 8 GB,NVIDIA,rtx 2060 super,8,rtx 2060 super,https://www.finn.no/recommerce/forsale/item/374632603
+MSI Geforce gtx 1080ti,2000,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,,gtx 1080 ti,https://www.finn.no/recommerce/forsale/item/375744279
+Radeon RX 6600 - 8 GB,2700,Radeon RX 6600 8 GB,AMD,rx 6600,8,rx 6600,https://www.finn.no/recommerce/forsale/item/374523080
+Nvidia Geforce RTX 3060 TI,3200,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,,rtx 3060 ti,https://www.finn.no/recommerce/forsale/item/374506297
+RTX 3080 HP 10GB,4650,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,10,rtx 3080,https://www.finn.no/recommerce/forsale/item/375377822
+PNY NVIDIA RTX  A2000 6GB,2800,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374702676
+CPU hovedkort osv selges,1500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376052489
+Sett for Mining Rig,1400,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=342919998
+ASUS DUAL GeForce RTX 4060 TI OC,5700,GeForce RTX 4060 Ti 8 GB,NVIDIA,rtx 4060 ti,,rtx 4060 ti,https://www.finn.no/recommerce/forsale/item/375986952
+Gtx880m 4gb og kjøleplate for asus g750 serien,1000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=237636385
+GeForce RTX 3060 Ghost,2750,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,,rtx 3060,https://www.finn.no/recommerce/forsale/item/373613731
+Stasjonær pc htpc med 240gb ssd + 2tb harddisk,7990,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=215163346
+"Gaming pakke. Super startpakke for ungdom. PC, tastatur, mus",5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375985964
+Mac Pro 4.1 / 5.1,3999,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/344220591
+Lenovo hovedkort:  i5-6400/ 8GB DDR4/ Gtx 960,1600,Unknown,NVIDIA,6400,8,,https://www.finn.no/recommerce/forsale/item/375955893
+Hp Z600 workstation,2000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/325177640
+Gaming PC,1500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375191982
+Ny Pris ! Grei pc med i5-7400 cpu og oppgrader minne fra 4 til 16 Gb,2000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/356836034
+MSI Radeon 6600,2250,Radeon RX 6600 8 GB,AMD,6600,,6600,https://www.finn.no/bap/forsale/ad.html?finnkode=370405331
+Geforce RTX 3060 12G,3500,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,,rtx 3060,https://www.finn.no/bap/forsale/ad.html?finnkode=369463637
+Gigabyte Geforce GTX 1080 WINDFORCE OC 8GB,1500,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,8,gtx 1080,https://www.finn.no/recommerce/forsale/item/375712742
+RX 6950 XT || som ny,6000,Radeon RX 6950 XT 16 GB,AMD,rx 6950 xt,,rx 6950 xt,https://www.finn.no/recommerce/forsale/item/376118576
+DELL Precision T7400 workstation,1500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/325180947
+Gaming PC,2300,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376163118
+Sapphire Pure Radeon RX 7700 XT 12GB - Grafikkort,4500,Radeon RX 7700 XT 12 GB,AMD,rx 7700 xt,12,rx 7700 xt,https://www.finn.no/recommerce/forsale/item/374506695
+PCSpecialist Prime 50 R5-55,5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375755618
+Mac fra 2011,1000,Unknown,,2011,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369963339
+"Retro Win xp spill pc, Amd 64X2 4400, 3gb minne ++ med skjerm",1000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376073093
+GeForce RTX™ 3060 Ti GAMING OC PRO 8G (rev. 2.0),3500,GeForce RTX 3060 Ti 8 GB,NVIDIA,3060 ti,,3060 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=371725136
+2 stk RTX 2070 Super og 1 stk RTX 2080,1900,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,https://www.finn.no/recommerce/forsale/item/376184828
+Nvidia Graffikkort RTX 2060S 8GB!,2200,GeForce RTX 2060 SUPER 8 GB,NVIDIA,rtx 2060 super,8,rtx 2060 super,https://www.finn.no/recommerce/forsale/item/333070541
+Gaming PC,2700,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376217470
+RTX geforce 3070 gpu! Salg!!,4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=373201615
+ASUS Radeon RX6600XT DUAL OC,3750,Radeon RX 6600 XT 8 GB,AMD,rx 6600 xt,,rx 6600 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=367271764
+RTX 2070 super! Salg!,2500,GeForce RTX 2070 SUPER 8 GB,NVIDIA,rtx 2070 super,,rtx 2070 super,https://www.finn.no/bap/forsale/ad.html?finnkode=373202303
+Pc,2100,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=351754249
+Gaming pc,3500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375892558
+God stasjonær pc,6300,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374955659
+"Apple iMac 21.5"" -  Late 2015",2500,Unknown,,2015,,,https://www.finn.no/recommerce/forsale/item/376217340
+"ASUS GeForce ROG STRIX 2080 SUPER OC, 8Gb",2799,GeForce RTX 2080 SUPER 8 GB,NVIDIA,2080 super,8,2080 super,https://www.finn.no/bap/forsale/ad.html?finnkode=366982826
+ASUS Radeon RX 6650 XT Dual OC,2800,Radeon RX 6650 XT 8 GB,AMD,rx 6650 xt,,rx 6650 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=367667852
+3060 Geforce Rtx,2900,GeForce RTX 3060 12 GB,NVIDIA,3060,,3060,https://www.finn.no/bap/forsale/ad.html?finnkode=372663343
+Gaming PC,5400,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374249290
+Sterk stasjonær-pc perfekt for all gaming,7000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374229542
+ASUS GeForce RTX 2080 SUPER ROG STRIX OC - 8GB,3000,GeForce RTX 2080 SUPER 8 GB,NVIDIA,rtx 2080 super,8,rtx 2080 super,https://www.finn.no/recommerce/forsale/item/374896144
+XFX Radeon RX590 8GB,1500,Radeon RX 590 8 GB,AMD,rx 590,8,rx 590,https://www.finn.no/bap/forsale/ad.html?finnkode=295746765
+"Mining rig, komplett. Ramme, HK, CPU, RAM, HDD, GPU'er, ny PSU",2700,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=341635118
+Acer Nitro N50-640 (LES BESKRIVELSE),1000,Unknown,,640,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372925719
+Raedon 6900XT,6700,Radeon RX 6900 XT 16 GB,AMD,6900 xt,,6900 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=359441264
+ZotacGaming Geforce RTX 3060 Twin Edge 12gb,2750,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,12,rtx 3060,https://www.finn.no/bap/forsale/ad.html?finnkode=360210206
+Gaming Pc / Nvidia RTX 2060,4000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375182819
+Acer Nitro N50-600 Gaming,2500,Unknown,,600,,,https://www.finn.no/recommerce/forsale/item/375123025
+Gaming pc,3500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375740995
+Asus B250 Mining Expert 19 GPU hovedkort m/prosessor,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=245319298
+HP ProDesk 600 G1 SFF med Windows pro versjon,1299,Unknown,,600,,,https://www.finn.no/recommerce/forsale/item/197103206
+"Intel i7-7700, ASUS ROG Strix B250F Gaming, Ballistix 16GB RAM",2500,Unknown,,7700,16,,https://www.finn.no/bap/forsale/ad.html?finnkode=370497980
+ZOTAC GAMING GeForce RTX 3080 Trinity,6500,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,,rtx 3080,https://www.finn.no/bap/forsale/ad.html?finnkode=343127039
+Stasjonær gaming pc selges rimelig,2500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/323460861
+HP Pavilion Gaming PC,4000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375276076
+Amd Radeon RX 6800 16GB,5000,Radeon RX 6800 16 GB,AMD,rx 6800,16,rx 6800,https://www.finn.no/recommerce/forsale/item/375099773
+Gaming Intel i5 RTX 260 6 GB,3500,Unknown,NVIDIA,rtx 260,6,,https://www.finn.no/bap/forsale/ad.html?finnkode=371413666
+AiO Vannkjølt 8-kjerne Gaming PC,7900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373503838
+Gaming pc,5600,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376172194
+Stasjonær Gaming Pc,4500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374837600
+Mining gpu-rig,2500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=341636231
+Asus stasjonær pc uten SSD.,2500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375345879
+RED DRAGON RX 6800XT 16GB GDDR6 RAM,5000,Radeon RX 6800 XT 16 GB,AMD,rx 6800 xt,16,rx 6800 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=341971152
+Selger rå gaming pc! GTX 1080!,4990,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371714344
+"3080 Suprim X 10GB LHR (Mai 2022), leveres Oslo & Vestfold",5500,GeForce RTX 3080 10 GB,NVIDIA,3080,10,3080,https://www.finn.no/recommerce/forsale/item/376140562
+Mining hovedkort,2000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=327603403
+Gaming PC,5900,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376161197
+Httpc Ryzen 3400g,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=364623467
+Hp Omen 880-109no,5000,Unknown,,880,,,https://www.finn.no/recommerce/forsale/item/340984589
+Selger et MSI RTX 3070 Suprim X 8G LHR grafikk-kort.,4500,GeForce RTX 3070 8 GB,NVIDIA,rtx 3070,,rtx 3070,https://www.finn.no/bap/forsale/ad.html?finnkode=373612728
+Asus gaming pc med alt av utstyr selges til en rimelig penge!,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372981558
+Komponentpakke Budsjett Gaming PC HK CPU GPU,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369229699
+Gaming Pc med monitor,2200,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/343187097
+Dreamhack Komplett gaming pc,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=145969882
+Selvbygd pc selges,5000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376053717
+Nvidia Geforce RTX 3070 Ti Founders Edition,6500,GeForce RTX 3070 Ti 8 GB,NVIDIA,rtx 3070 ti,,rtx 3070 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=372856549
+RTX 2060 12GB,2200,Unknown,NVIDIA,rtx 2060,12,,https://www.finn.no/bap/forsale/ad.html?finnkode=372209649
+Gaming stasjonær pc 8 GB,5500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=350767628
+Gaming PC,4300,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367962743
+Pen gaming pc Ryzen 7 3700x / 1070 / 32gb Ram,5499,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376148196
+Gainward Ghost GeForce GTX 1660Ti,1200,GeForce GTX 1660 Ti 6 GB,NVIDIA,gtx 1660 ti,,gtx 1660 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=344004361
+"Grafikkort EVGA 3070 stor utgave, pent brukt!",4000,GeForce RTX 3070 8 GB,NVIDIA,3070,,3070,https://www.finn.no/bap/forsale/ad.html?finnkode=373201202
+RTX 3060 zotac 12gb,2990,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,12,rtx 3060,https://www.finn.no/bap/forsale/ad.html?finnkode=306155637
+Gaming PC GTX 1660 Super,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371254655
+Acer Aspire Gaming pc med 2 skjermer+tastatur+mus,4900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=374119178
+Sterk Gaming PC,6000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368295143
+HP Z420 Workstation LJ449AV selges som delemaskin,1300,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367524340
+Gaming PC med 980ti // I7-6700k // 16GB,7000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374556701
+ASUS Radeon RX 5700 XT ROG Strix OC,2000,Radeon RX 5700 XT 8 GB,AMD,rx 5700 xt,,rx 5700 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=356371536
+Acer Predator G3-605 | Oppgradert,2500,Unknown,,605,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372726345
+GAMING PC | GTX 1060 | i7-7700 | 16GB RAM,3950,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=346048528
+Retro gameing pc i ekte 90-talls design,1000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375720891
+Pc Selges,5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374418517
+Selges grunnet overgang til annen,2500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372489246
+Billig Gaming pc selges!,3200,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374996545
+Rtx 3060 Ti 8gb MSI,3500,GeForce RTX 3060 Ti 8 GB,NVIDIA,rtx 3060 ti,8,rtx 3060 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=370643612
+Gaming PC,2700,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374208327
+HP Pavilion TG01 Gaming PC,3400,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/357362701
+Fractal Design Node 202 med strømforsyning,1900,Unknown,,202,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371517170
+Kraftig Gaming PC,7500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375078911
+Gaming PC,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=348725517
+HP Pavilion Gaming PC AMD Ryzen 5 4600G,3600,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/366006706
+Sterk og rå gaming pc,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371191069
+Super Gaming PC,6000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374861176
+Hp pavalion gaming pc,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373351936
+"Komplett IMBA a40 gaming pc,Ryzen 5 og GTX 1660 SUPER",5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=197526452
+Stasjonær gaming PC,3000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/248108058
+Old School Gamer,2700,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375129972
+Gaming setup,7500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376023380
+OMEN by HP desktop PC 880-p1xx,2500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375995307
+I7 6700 PC,3900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=362746781
+HP Elite Desk 800 Gaming pc,4250,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371198133
+"iMac 21,5"" 4K Retina",4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371160726
+Lenovo gaming pc,2700,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372918781
+Stasjonær Lenovo gaming PC,3500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/364920437
+"Stasjonær PC, Datamaskin, i7, 12gb ram",1000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368496579
+"HP Z440 Workstation, Intel Xeon E5-1630 v3 @ 3.70GHz, 32 GB ECC, 250GB SSD",3500,Unknown,,1630,32,,https://www.finn.no/recommerce/forsale/item/373965505
+Gaming Pc,5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=349723887
+Gaming PC,3900,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376137349
+Gamingpc,6000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376137593
+ASUS GeForce GTX 1070 ROG Strix Gaming,1500,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,https://www.finn.no/bap/forsale/ad.html?finnkode=367355584
+NVIDIA GeForce 1080 SeaHawk X,2000,GeForce GTX 1080 8 GB,NVIDIA,1080,,1080,https://www.finn.no/bap/forsale/ad.html?finnkode=373835804
+Sapphire RX 590 Special Edition 8GB GDDR5 Graphics Card,1150,Radeon RX 590 8 GB,AMD,rx 590,8,rx 590,https://www.finn.no/bap/forsale/ad.html?finnkode=368624257
+GAMING PC BILLIG,5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367217484
+Stasjonær Gaming PC (reservert),1250,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373330576
+Gaming PC med  RTX 3060 Ti,6799,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375842097
+Gaming pc fra Komplett!,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=285706135
+Stasjonær gaming PC,1800,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374631286
+Gaming Pc og tilbehør,6000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375721902
+Asus ROG-STRIX-RX580-T8G-GAMING,1200,Radeon RX 580 8 GB,AMD,rx 580,,rx 580,https://www.finn.no/bap/forsale/ad.html?finnkode=370138656
+Msi Nightblade MI3,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371546209
+"Mac Pro (mid 2010) og Apple Cinema 30""",3600,Unknown,,2010,,,https://www.finn.no/recommerce/forsale/item/375074266
+"Gaming PC - GTX 970, i5-6600K, 16GB, 256, RGB",4000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375087145
+Pent brukt gaming-PC selges rimelig.,4500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375076432
+"Gaming PC - GTX 980, i7-5820K, 16GB",3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373854109
+SilverStone Sugo SG15,1399,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368633429
+Gaming pc,6000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=356984284
+Strix Gaming PC - GeForce GTX 1070 8GB - Intel Core i5-10400F - 16GB RAM,4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369057293
+God stasjonær pc. Gaming eller creative. Mye for pengene!,4000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/373640096
+Fin starter Gaming Pc!,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=299889715
+"Gaming PC. Kraftig og god. GTX 1660 super, i5- 9600k, 16gb ram",5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/365772194
+Rask Gaming PC med nye deler!,1999,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373787671
+Asus Dual Radeon RX 7900 GRE OC,6600,Unknown,AMD,rx 7900,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373345714
+Rog Strix RX580 T8G Gaming,1200,Radeon RX 580 8 GB,AMD,rx 580,,rx 580,https://www.finn.no/bap/forsale/ad.html?finnkode=371834349
+Gaming PC,4900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=365785447
+Msi 2060 Gaming Z,2500,GeForce RTX 2060 6 GB,NVIDIA,2060,,2060,https://www.finn.no/bap/forsale/ad.html?finnkode=262624107
+MÅ BORT! Gaming Pc,5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375341547
+Stasjonær PC,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370893256
+Mini-ITX kontor-pc,5699,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375257944
+Kraftig Gaming Pc billig,5999,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374315472
+PowerColor Red Dragon Radeon™ RX 570 4GB - Nytt kort,1200,Unknown,AMD,rx 570,4,,https://www.finn.no/bap/forsale/ad.html?finnkode=248292079
+Solid gaming pc,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367384214
+🎮 Entry-Level Gaming PC med oppgraderingsmuligheter🎮,3500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375148702
+Fujitsu Esprimo Windows11/Office2021 Nvidia 1050/Intel Q8300/8Gb RAM/360Gb SSD,1799,Unknown,NVIDIA,1050,8,,https://www.finn.no/bap/forsale/ad.html?finnkode=211030768
+Nvidia Quadro 6000 6GB,1000,Unknown,NVIDIA,6000,6,,https://www.finn.no/bap/forsale/ad.html?finnkode=366906898
+HORTEN - Gaming pc / kontor pc,2900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367515537
+"Gaming PC med skjerm, tastatur og mus",7500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374655549
+Desktop PC med i7-3770 og 12 GB minne 160 GB disk,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=295095392
+EVGA GEFORCE GTX 1080Ti FTW edition,4500,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,,gtx 1080 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=368491322
+Mining rig,2000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/376018596
+Azza pyramid gaming pc,6000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369696283
+Pc med oppgraderinger for spilling/gaming,4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367186390
+Gaming pc,5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372223571
+Gaming PC,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=333187242
+"Gaming pc i7 7700, rx 570 8gb, 16gb DDR4, 1,6 SSD",5400,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=335678480
+"PC, en skjerm og mus",4900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=326717304
+"RGB Gaming PC - Intel i5-10600, GTX 1070 8GB, 1TB NVMe",7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370953761
+Gaming pc,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370226674
+HP GAMING PC,6200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368737267
+MSI GeForce RTX 3060 VENTUS 2X OC 12GB,2750,GeForce RTX 3060 12 GB,NVIDIA,rtx 3060,12,rtx 3060,https://www.finn.no/recommerce/forsale/item/348033581
+Stasjonær uten harddisk,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371733545
+Stasjonær gaming pc,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369948692
+AMD radeon RX 6500 XT,1300,Radeon RX 6500 XT 4 GB,AMD,rx 6500 xt,,rx 6500 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=344551685
+"iMac (Retina 5K, 27-inch, Late 2015) 16 GB Ram, QuadCore 4GHz i7 til salgs",8000,Unknown,,2015,16,,https://www.finn.no/recommerce/forsale/item/373639380
+Gaming pc,2500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=361354561
+"Gaming pc, Komplett bygd i 2013.",3500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374875663
+Gaming Pc,6500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374355431
+"Gaming pakke. Super startpakke for ungdom. PC, tastatur, mus, mikrofon.",4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=365593097
+Gaming-PC Selges Billig,2600,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=81070383
+GAMING PAKKE SELGES!!!!,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372202786
+Miningrig uten GPU,1000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371240068
+Stasjonær Gaming PC,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369977921
+Stasjonær Gaming PC - i7-4770K + GTX 1070,4200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=350245290
+Komplett Gaming PC,5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369634559
+Gaming PC Acer Aspicre TC-895 med 2 skjermer,5499,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=359028247
+Stasjonær PC sett,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371445089
+Solid og kraftig Gaming/redigering/kontor PC!,3900,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375359713
+"Gaming PC, tastatur og mus",5500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368920226
+MSI gtx 1070 8gb,1000,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,8,gtx 1070,https://www.finn.no/bap/forsale/ad.html?finnkode=374042153
+Gaming pc,4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373154790
+Gaming pc (GTX 1080….),5500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372128866
+Komplett Gaming PC!,6999,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372014033
+Stasjonær pc selges,6000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367460733
+"InWin GRone Full Tower Svart RGB  i5 7400 3,0GHz, 16GB, 128GB SSD, 1TB",3800,Unknown,,7400,16,,https://www.finn.no/recommerce/forsale/item/375629474
+"Gaming PC i7, RTX 2070, Vannkjøling",5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370433326
+Gigabyte GTX 1080TI Gaming OC 11GB,2000,GeForce GTX 1080 Ti 11 GB,NVIDIA,gtx 1080 ti,11,gtx 1080 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=372529181
+"Lenovo V520S, Intel i5-7400, DDR4-8gb, SSD M2-128Gb, HDD-1Tb, Wi-Fi, Win 10 Pro",1800,Unknown,,7400,8,,https://www.finn.no/bap/forsale/ad.html?finnkode=361959373
+"PC - AMD Ryzen7 1700X, 16 GB ram, 1050 TI 4GB, Fractal Design Kabinett",2000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/360528424
+"Gaming Pc selges billig! Ryzen5,gtx1060,SSD",2600,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369063730
+Gaming PC med AMD Ryzen 5 1600X og GeForce GTX 1660,7500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373539176
+Diverse Data deler,4000,GeForce GTX 1060 6 GB,NVIDIA,gtx 1060,6,gtx 1060,https://www.finn.no/bap/forsale/ad.html?finnkode=368072114
+Acer Predator g3-710 gaming pc,4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372145561
+MSI Radon R9 380 Gaming 4gb,2390,Unknown,,380,4,,https://www.finn.no/bap/forsale/ad.html?finnkode=298403201
+NZXT Gaming datamaskin,4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=360236019
+Kraftig PC | Perfekt for tyngre kontoroppgaver og gaming,7500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372449834
+Gaming PC - i7-8700k - GTX 1060 6GB - 16GB RAM - 256GB NvMe + 256GB  SSD,4000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375989281
+"HP / ACER 16gb ddr4, i5 11400f, gtx 1660S, m2 ssd og windows 11",4995,Unknown,NVIDIA,gtx 1660 super,16,,https://www.finn.no/recommerce/forsale/item/375987420
+HP Omen 25L Stasjonær Gaming-PC,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369880228
+NVIDIA GeForce RTX 2070 MSI Armor 8GB,2499,GeForce RTX 2070 8 GB,NVIDIA,rtx 2070,8,rtx 2070,https://www.finn.no/bap/forsale/ad.html?finnkode=329969572
+"6GPU Mining Rig Startpakke (Ramme, Hovedkort, RAM, SSD, CPU, Risere og Vifter)",3499,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=253721118
+"Retro Hp, Win98, Pentium 3, Nvidia tnt 2 +++",2300,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375337808
+Gaming PC (Gratis frakt),4999,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375339522
+"Mac Pro 5,1 (mid 2010), 2 x 3,46Ghz CPU, 64GB RAM, 1TB SSD, 6TB backupdisk",5000,Unknown,,2010,64,,https://www.finn.no/recommerce/forsale/item/375239619
+Gaming-PC fra 2016 selges til god sum,3800,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374039056
+Selger bra gaming-PC. GTX 1060 6GB,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372193495
+Acer nitro Gaming PC  selges komplett med alt utstyr. RTX 2060.,6500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374866115
+Baby AT-kabinett m/ Socket 7 hovedkort,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370145166
+Solid gaming pc,4200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371064137
+HP ProDesk,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368963933
+Grei gaming pc,2900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=360874077
+GeForce GTX 1070 Quick Silver 8G OC,1400,GeForce GTX 1070 8 GB,NVIDIA,gtx 1070,,gtx 1070,https://www.finn.no/bap/forsale/ad.html?finnkode=370424423
+i7 gaming pc,2500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374420980
+"MSI GeForce GTX 1080 Gaming X! Lite brukt, selges rimelig.",2400,GeForce GTX 1080 8 GB,NVIDIA,gtx 1080,,gtx 1080,https://www.finn.no/bap/forsale/ad.html?finnkode=190878936
+Nvidia PNY Quadro P5000 16GB,7500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=268511754
+"16gb ddr4, i5 11400f, gtx 1660S, m2 ssd og windows 11 licens.",4899,Unknown,NVIDIA,gtx 1660 super,16,,https://www.finn.no/recommerce/forsale/item/364004038
+Dell Precision T5500 kontor pc med Windows 11 Pro,2399,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369436403
+PC | Intel i5| RX570 8GB,2700,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=342919471
+Gaming PC X299 GTX 1070 32GB Ram,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369142743
+Gaming PC ROG RTX 2070,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370948327
+GAMING PC - KABINETT - NOCTUNA VIFTER  - kjøpt nytt februar / mars 2024,3800,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=348824717
+Stasjonær PC GTX 1660Ti,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=327222355
+Gaming PC,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370483561
+Stasjonær pc til gaming,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367894169
+"ASUS TUF SABERTOOTH X58, i7 960, 12GB Kingston DDR3",1200,Unknown,,960,12,,https://www.finn.no/bap/forsale/ad.html?finnkode=370342064
+Acer Nitro Gaming PC Oppsett selges billig!,5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374561768
+Hp z4 G4 Server/workstation i9-7900x,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=362483988
+Gaming pc | i7 -9gen | 32GB DDR4 | RTX 2060 | 1 TB M.2 SSD | Lydisolert,6500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375990362
+"Intel i9-10900X Prosessor, LGA2066",4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370581149
+Intel i9-10900X Prosessor LGA2066 (Uåpnet),5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370581148
+Stasjonær Gaming PC med 1TB SSD (fin til kontor PC også),3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=363043078
+"gaming pc, med logitech tastatur og datamus",5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=355782948
+NY PRIS! Stasjonær PC minitower,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371425915
+God stasjonær pc for kontorarbeid og lett gaming,4001,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371338735
+Gaming PC fra Komplett,6000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=366778044
+"Stasjoner Gaming Pc (i7-8700k, MSI GTX 1070)",8000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/372987975
+Datamaskin sett,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=358981520
+Gaming PC (Gratis frakt),6500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374936715
+Gamingpc,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=288383125
+Stasjonær pc -  Fractal Design Define R5 Hvit,3200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372885726
+Gaming pc,5000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374475796
+Stasjonær PC for Gaming / Acer Nitro N50-610,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=314703269
+"Gaming-pc m/GeForce 1070, 16GB minne, 500GB M.2, AMD Ryzen 5",4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=358153571
+Acer TC-895 med RTX 3060.  Strøken gaming PC med nygaranti.,7500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375482141
+"MASSE datautstyr og deler - RAM, CPUer, GPUer, gamingtastatur, headset, mus++++",1990,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=333825410
+Ekstern GPU m thunderbolt,1599,GeForce GTX 1080 Ti 11 GB,NVIDIA,1080 ti,,1080 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=351376977
+Gaming Pc Ryzen 3 3200G-Rx 5500xt 8Gb-16Gb Ram,4500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/373749258
+Gaming PC selges billig,7000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/373695913
+PC med  åpen kabinett,3800,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371906184
+Komplett Gaming PC,7000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373408572
+"Lenovo ThinkCentre med I5-8500T, 16Gb RAM, 256Gb NVME",3900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369276174
+Gaming Pc I5 9400F-Rtx 2060-16Gb Ram,6500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375914439
+"PC Deler, nesten komplett PC",6500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/372772293
+Utdatert stasjonær gaming pc 2017,4500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/371598001
+🎮 Gaming PC 🎮,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372517180
+Gaming PC,4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367047245
+"Brukt Gaming maskin i3-7100 3.9Ghz, 8 GB RAM, 2x 256 GB SSD uten lisens",2999,GeForce GTX 1060 6 GB,NVIDIA,gtx 1060,6,gtx 1060,https://www.finn.no/bap/forsale/ad.html?finnkode=341981334
+Selvbygd datamaskin,2900,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/320903793
+Gaming Pc - NVIDIA GeForce GTX 1660 SUPER,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=288334991
+Gaming pc selges,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367351376
+"Mac Pro 4.1 (5,1)",3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=222436251
+Komplett Epic Gaming Pc,6000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375883961
+"PC Oppgraderingspakke | Ryzen 9 3900 | 12 Core, 24 Thread",3450,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373217394
+Gaming pc,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370912449
+High end Gaming PC - Komplett gamer,5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369281890
+Lenovo IdeaCentre Type 90DD - oppgradert ram og lagring,3700,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=317169899
+"STRØKEN iMac 21,5 late 2013, Sonoma - SPREK iMAC! NY REDUSERT PRIS!",3200,Unknown,,2013,,,https://www.finn.no/bap/forsale/ad.html?finnkode=359960969
+Komplett gaming PC,4000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367081836
+"Nytt 4090 TUF OC, 6900xt,3060ti/70ti,  3070,PNY3070, turbo 3070, Zotac 3070ti",3250,Radeon RX 6900 XT 16 GB,AMD,6900 xt,,6900 xt,https://www.finn.no/bap/forsale/ad.html?finnkode=368437409
+"Billig, nesten ny Gaming PC",6000,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375266180
+"Mac Pro 5.1 (ssd, 40Gb RAM, 6/12 3.46GHz, gtx 680 og Radeon HD 7970",6000,Unknown,NVIDIA,gtx 680,40,,https://www.finn.no/bap/forsale/ad.html?finnkode=371187039
+Gaming-PC i Apple G5-kabinett,3500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367930076
+"Hp One 400 Alt i en pc, Intel i3, 12gb,ssd, win 10 ++",1000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367735244
+Retro Gaming: Asus 7900 GTX King Kong Limited Edition,1500,Unknown,NVIDIA,7900,,,https://www.finn.no/bap/forsale/ad.html?finnkode=359598161
+Kraftig Gaming PC• RTX 2060 - R7 3700X- 16GB RAM- 1TB M.2 SSD,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=366879786
+Kraftig 1080p / 1440p gaming pc! | Ryzen 5 / 1 TB SSD / WiFi,5699,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375118672
+Helt nytt (Uåpnat) RTX 3080 med pen RGB,5500,GeForce RTX 3080 10 GB,NVIDIA,rtx 3080,,rtx 3080,https://www.finn.no/recommerce/forsale/item/376030511
+Gaming pc,2000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372419888
+Gaming PC selges,7900,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/366454012
+Gaming PC med 1080ti selges,7499,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367931756
+"Eldre gaming PC i7 920, GTX680, full custom vannkjøling.",1000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369491760
+"Windows XP pakke, alt inkludert.",1000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=373290453
+"Kompakt Nybygget Gaming/Kontor PC - i5-4590S, RX 570 8GB, 750GB lagring",3200,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/355602884
+Rå Custom Gaming PC | Ryzen 7 5800x3D | 16gb 3800mhzCL16 OC ram | GTX 1080,7200,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374485722
+MineBox 8 Large 70mm miner server box/case,6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=306212269
+Gaming Pc / Intel i7 / 16GB Ram,5500,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/375146876
+"Gaming Pc med skjerm, keyboard, mus, høytalere, headset mm.",6500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369311423
+"Kompakt og rask gaming-PC selges! I7-4790, GTX 970, 16Gb,SSD. W10 og Office.",3200,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368896286
+Gaming pc || intel-i7 || gtx 1060 || 16 gb RAM || 500 gb HDD || 256 gb SSD||,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=353083560
+Komplett i70 Epic Gaming PC,4350,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371928421
+HELT RÅ LENOVO LEGION T5 R7 GAMING-PC - Ryzen 7-5700G 16GB RAM 1TB SSD GTX1060,7995,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=209862924
+IBM Aptiva P233mhz med 3dfx Voodoo 1,3000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=371075547
+komplett i120 Epic Gaming PC - RTX 3060 Edition,7900,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370814034
+Gaming PC | RTX 2070 | i7-7700k 4.2GHz | 16GB 3200MHz RAM |  Lynrask M.2 Nvme,5000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=370608697
+"Asus 27"" 4K gamingskjerm ROG Strix XG27UQ",5500,Radeon RX 5700 8 GB,NVIDIA,rx 5700,,rx 5700,https://www.finn.no/bap/forsale/ad.html?finnkode=372724808
+"PC ( i5-7500, RX570 8 GB, 1TB M.2 Lagring)  MED GRATIS SKJERM",4500,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=369975141
+ASUS ROG Strix B550-E GAMING Hovedkort,2275,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=374156380
+6U NAS Kabinett med SAS backplane - Passer i 60cm rack!,6000,GeForce GTX 1080 Ti 11 GB,NVIDIA,1080 ti,,1080 ti,https://www.finn.no/bap/forsale/ad.html?finnkode=367447424
+BELKIN Thunderbolt 3 Dock Plus,1400,Unknown,,,,,https://www.finn.no/recommerce/forsale/item/374978883
+Komplett Gamer - 144Hz Edition,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=368798902
+2 x Geforce GTX 680 kort,1500,Unknown,NVIDIA,gtx 680,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367180380
+Som ny gaming PC,5499,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=367889036
+iMac 27 late 2012 med Sonoma - klar for 2024! Perfekt studentmaskin!,2500,Unknown,,2012,,,https://www.finn.no/recommerce/forsale/item/354839565
+"iMac 21,5 mid 2011, SSD og Sonoma OS installert - rask maskin!",2900,Unknown,,2011,,,https://www.finn.no/bap/forsale/ad.html?finnkode=359945325
+Gaming pc,8000,Unknown,,,,,https://www.finn.no/bap/forsale/ad.html?finnkode=372470512

@@ -7,7 +7,7 @@ import re
 import argparse
 import time
 from collections import deque
-from datetime import datetime
+
 
 class RateLimiter:
     def __init__(self, max_calls, period):
@@ -31,46 +31,11 @@ def load_gpu_models():
     with open('gpus.json', 'r') as f:
         return json.load(f)
 
-def load_blacklist(filename):
-    blacklist = {'headings': [], 'sellers': []}
-    try:
-        with open(filename, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#'):
-                    parts = line.split(',', 1)
-                    if len(parts) == 2:
-                        heading = parts[0].strip()
-                        seller = parts[1].strip()
-                        if heading:
-                            if seller:  # Both heading and seller specified
-                                blacklist['headings'].append((heading, seller))
-                            else:  # Only heading specified, block regardless of seller
-                                blacklist['headings'].append((heading, None))
-                        elif seller:  # Only seller specified
-                            blacklist['sellers'].append(seller)
-    except FileNotFoundError:
-        print(f"Blacklist file {filename} not found. Proceeding without a blacklist.")
-    return blacklist
-
-def is_blacklisted(item, blacklist):
-    heading = item.get('heading', '').lower()
-    seller = item.get('seller', {}).get('name', '').lower()
-
-    # Check if the seller is in the blacklist
-    if seller in [s.lower() for s in blacklist['sellers']]:
-        return True
-
-    # Check if the heading and seller combination is in the blacklist
-    for blacklisted_heading, blacklisted_seller in blacklist['headings']:
-        if blacklisted_heading.lower() in heading:
-            if blacklisted_seller is None or blacklisted_seller.lower() == seller:
-                return True
-
-    return False
-
 def extract_model_info(text):
     text_lower = text.lower()
+    if "pc" in text_lower or "stasjonær" in text_lower:
+        return None, None, None
+
     brand = None
     if 'nvidia' in text_lower or 'geforce' in text_lower or 'gtx' in text_lower or 'rtx' in text_lower:
         brand = 'NVIDIA'
@@ -107,12 +72,11 @@ def match_gpu_model(title, gpu_models):
     brand, model_numbers, vram = extract_model_info(title)
 
     if brand is None and model_numbers is None and vram is None:
-        return "Skipped", None, None, None, None, 0
+        return "Skipped", None, None, None, None
 
     if not model_numbers:
-        return "Unknown", brand, None, vram, None, 0
+        return "Unknown", brand, None, vram, None
 
-    matches = []
     for gpu in reversed(gpu_models):
         gpu_lower = gpu.lower()
         for model_number in model_numbers:
@@ -143,16 +107,11 @@ def match_gpu_model(title, gpu_models):
                         if vram:
                             vram_match = re.search(r'(\d+)\s*gb', gpu_lower)
                             if vram_match and int(vram_match.group(1)) == int(vram):
-                                matches.append((gpu, inferred_brand, model_number, vram, model_number))
+                                return gpu, inferred_brand, model_number, vram, model_number
                         else:
-                            matches.append((gpu, inferred_brand, model_number, vram, model_number))
+                            return gpu, inferred_brand, model_number, vram, model_number
 
-    if len(matches) > 1:
-        return "Multi", brand, [m[2] for m in matches], vram, [m[4] for m in matches], len(matches)
-    elif len(matches) == 1:
-        return matches[0] + (1,)
-    else:
-        return "Unknown", brand, model_numbers[0] if model_numbers else None, vram, None, 0
+    return "Unknown", brand, model_numbers[0] if model_numbers else None, vram, None
 
 def fetch_data(page=1):
     rate_limiter()
@@ -178,7 +137,7 @@ def fetch_data(page=1):
 
 def extract_info(item, gpu_models):
     heading = item.get("heading", "")
-    model, brand, model_number, vram, matched_model_number, match_count = match_gpu_model(heading, gpu_models)
+    model, brand, model_number, vram, matched_model_number = match_gpu_model(heading, gpu_models)
     return {
         "heading": heading,
         "price": item.get("price", {}).get("amount", "N/A"),
@@ -187,12 +146,10 @@ def extract_info(item, gpu_models):
         "extracted_model": model_number,
         "extracted_vram": vram,
         "matched_model_number": matched_model_number,
-        "match_count": match_count,
-        "canonical_url": item.get("canonical_url", ""),
-        "seller": item.get("seller", {}).get("name", "")
+        "canonical_url": item.get("canonical_url", "")
     }
 
-def fetch_and_process_data(gpu_models, blacklist):
+def fetch_and_process_data(gpu_models):
     all_items = []
     page = 1
     total_pages = 1  # We'll update this after the first request
@@ -209,8 +166,7 @@ def fetch_and_process_data(gpu_models, blacklist):
                 pbar.total = total_pages
 
             items = data.get("docs", [])
-            processed_items = [extract_info(item, gpu_models) for item in items if not is_blacklisted(item, blacklist)]
-            all_items.extend(processed_items)
+            all_items.extend([extract_info(item, gpu_models) for item in items])
 
             page += 1
             pbar.update(1)
@@ -245,14 +201,13 @@ def process_unknown_gpus(df, gpu_models):
     def process_row(row):
         description = fetch_and_parse_description(row['canonical_url'])
         old_model = row['model']
-        model, brand, model_number, vram, matched_model_number, match_count = match_gpu_model(description, gpu_models)
+        model, brand, model_number, vram, matched_model_number = match_gpu_model(description, gpu_models)
         if model != 'Unknown' and model != 'Skipped':
             row['model'] = model
             row['extracted_brand'] = brand
             row['extracted_model'] = model_number
             row['extracted_vram'] = vram
             row['matched_model_number'] = matched_model_number
-            row['match_count'] = match_count
         return row
 
     updated_unknown_df = unknown_df.progress_apply(process_row, axis=1)
@@ -263,15 +218,10 @@ def process_unknown_gpus(df, gpu_models):
 
     return df
 
-def process_existing_data(filename, gpu_models, blacklist):
+def process_existing_data(filename, gpu_models):
     df = pd.read_csv(filename)
     tqdm.pandas(desc="Processing existing data")
-    df[['model', 'extracted_brand', 'extracted_model', 'extracted_vram', 'matched_model_number', 'match_count']] = df['heading'].progress_apply(lambda x: pd.Series(match_gpu_model(x, gpu_models)))
-
-    # Apply blacklist to existing data
-    df['is_blacklisted'] = df.apply(lambda row: is_blacklisted({'heading': row['heading'], 'seller': {'name': row['seller']}}, blacklist), axis=1)
-    df = df[~df['is_blacklisted']].drop('is_blacklisted', axis=1)
-
+    df[['model', 'extracted_brand', 'extracted_model', 'extracted_vram', 'matched_model_number']] = df['heading'].progress_apply(lambda x: pd.Series(match_gpu_model(x, gpu_models)))
     return df
 
 def reorder_csv_columns(df):
@@ -282,19 +232,16 @@ def reorder_csv_columns(df):
 def main():
     parser = argparse.ArgumentParser(description="GPU listing processor")
     parser.add_argument("-f", "--file", type=str, help="Path to existing CSV file to process")
-    parser.add_argument("-b", "--blacklist", type=str, default="blacklist.txt", help="Path to blacklist file")
     args = parser.parse_args()
 
     gpu_models = load_gpu_models()
-    blacklist = load_blacklist(args.blacklist)
 
     if args.file:
-        df = process_existing_data(args.file, gpu_models, blacklist)
+        df = process_existing_data(args.file, gpu_models)
         output_filename = args.file
     else:
-        df = fetch_and_process_data(gpu_models, blacklist)
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        output_filename = f"finn_gpu_listings_{current_date}.csv"
+        df = fetch_and_process_data(gpu_models)
+        output_filename = "gpu_listings.csv"
 
     initial_total = len(df)
     df = df[df['model'] != 'Skipped']  # Remove skipped GPUs

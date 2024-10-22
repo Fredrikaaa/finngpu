@@ -8,11 +8,18 @@ from datetime import datetime
 def parse_args():
     parser = argparse.ArgumentParser(
         description="Analyze GPU listings and find the best price-to-performance ratios.",
-        epilog="This tool helps you find the best value GPUs based on price and 1440p performance."
+        epilog="Example usage:\n"
+               "  %(prog)s -p performance.csv                  # Use latest listings\n"
+               "  %(prog)s -f listings.csv -p performance.csv  # Use specific listings\n"
+               "  %(prog)s -p performance.csv -c output.csv    # Save to CSV\n",
+        formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("-f", "--file", help="Path to specific CSV file containing GPU listings. If not provided, uses most recent finn_gpu_listings_*.csv")
-    parser.add_argument("-p", "--performance", required=True, help="Path to the CSV file containing 1440p performance data")
-    parser.add_argument("-c", "--csv", help="Output results to a CSV file instead of console", dest="output_csv", metavar="OUTPUT_FILE")
+    parser.add_argument("-f", "--file",
+                       help="Path to specific CSV file containing GPU listings. If not provided, uses most recent finn_gpu_listings_*.csv")
+    parser.add_argument("-p", "--performance", required=True,
+                       help="Path to the CSV file containing 1440p performance data")
+    parser.add_argument("-c", "--csv", dest="output_csv", metavar="OUTPUT_FILE",
+                       help="Output results to a CSV file instead of console")
     return parser.parse_args()
 
 def find_latest_gpu_listings():
@@ -26,7 +33,6 @@ def find_latest_gpu_listings():
     dated_files = []
     for file in files:
         try:
-            # Extract date from filename using regex
             date_match = re.search(r'finn_gpu_listings_(\d{4}-\d{2}-\d{2})\.csv', file)
             if date_match:
                 date_str = date_match.group(1)
@@ -58,13 +64,6 @@ def parse_gpu_listings(filename):
 
     return cheapest_prices
 
-def standardize_gpu_name(name):
-    # Remove 'GB' and any surrounding whitespace
-    name = re.sub(r'\s*\d+\s*GB\s*', ' ', name)
-    # Remove any duplicate whitespace
-    name = re.sub(r'\s+', ' ', name).strip()
-    return name
-
 def load_and_process_data(listings_file, performance_file):
     # Get the cheapest price for each GPU model
     cheapest_df = parse_gpu_listings(listings_file)
@@ -72,12 +71,18 @@ def load_and_process_data(listings_file, performance_file):
     # Load the 1440p performance data
     performance_df = pd.read_csv(performance_file)
 
-    # Standardize GPU names in both dataframes
-    cheapest_df['standardized_model'] = cheapest_df['model'].apply(standardize_gpu_name)
-    performance_df['standardized_model'] = performance_df['Graphics Card'].apply(standardize_gpu_name)
+    # Merge the dataframes based on exact model names
+    merged_df = pd.merge(cheapest_df, performance_df,
+                        left_on='model',
+                        right_on='Graphics Card',
+                        how='inner')
 
-    # Merge the dataframes based on the standardized GPU model names
-    merged_df = pd.merge(cheapest_df, performance_df, on='standardized_model', how='inner')
+    # Print unmatched models for debugging
+    unmatched_models = cheapest_df[~cheapest_df['model'].isin(merged_df['model'])]
+    if not unmatched_models.empty:
+        print("\nWarning: The following models from listings didn't match performance data:")
+        for model in unmatched_models['model']:
+            print(f"- {model}")
 
     # Calculate price per FPS
     merged_df['Price per FPS'] = merged_df['price'] / merged_df['1440p Ultra FPS']
@@ -97,6 +102,7 @@ def display_results(df, output_csv=None):
         print(f"Results have been saved to {output_csv}")
     else:
         # Print the table header
+        print("\nResults:")
         print(f"{'Model':<40}{'Price':>10}{'1440p FPS':>15}{'Price per FPS':>20}{'URL':<100}")
         print("-" * 185)
 
@@ -104,14 +110,27 @@ def display_results(df, output_csv=None):
         for _, row in df.iterrows():
             print(f"{row['model']:<40}{row['price']:>10.2f}{row['1440p Ultra FPS']:>15.2f}{row['Price per FPS']:>20.2f}{row['canonical_url']:<100}")
 
-if __name__ == "__main__":
+def main():
     args = parse_args()
 
     # Get the input file, either from argument or by finding the latest
     input_file = args.file if args.file else find_latest_gpu_listings()
 
-    # Load and process the data
-    result_df = load_and_process_data(input_file, args.performance)
+    try:
+        # Load and process the data
+        result_df = load_and_process_data(input_file, args.performance)
 
-    # Display the results
-    display_results(result_df, args.output_csv)
+        # Display the results
+        display_results(result_df, args.output_csv)
+
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
+        return 1
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return 1
+
+    return 0
+
+if __name__ == "__main__":
+    exit(main())

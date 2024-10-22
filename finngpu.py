@@ -188,8 +188,9 @@ def extract_info(item, gpu_models):
         "extracted_vram": vram,
         "matched_model_number": matched_model_number,
         "match_count": match_count,
-        "canonical_url": item.get("canonical_url", ""),
-        "seller": item.get("seller", {}).get("name", "")
+        "location": item.get("location", "N/A"),
+        "seller": item.get("seller", {}).get("name", ""),
+        "canonical_url": item.get("canonical_url", "")
     }
 
 def fetch_and_process_data(gpu_models, blacklist):

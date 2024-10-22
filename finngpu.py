@@ -32,42 +32,31 @@ def load_gpu_models():
         return json.load(f)
 
 def load_blacklist(filename):
-    blacklist = {'headings': [], 'sellers': []}
+    blacklist = {'patterns': [], 'ids': []}
     try:
         with open(filename, 'r') as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#'):
-                    parts = line.split(',', 1)
-                    if len(parts) == 2:
-                        heading = parts[0].strip()
-                        seller = parts[1].strip()
-                        if heading:
-                            if seller:  # Both heading and seller specified
-                                blacklist['headings'].append((heading, seller))
-                            else:  # Only heading specified, block regardless of seller
-                                blacklist['headings'].append((heading, None))
-                        elif seller:  # Only seller specified
-                            blacklist['sellers'].append(seller)
+                    # If the line contains only digits, treat it as an ID
+                    if line.isdigit():
+                        blacklist['ids'].append(line)
+                    else:
+                        blacklist['patterns'].append(line.lower())
     except FileNotFoundError:
         print(f"Blacklist file {filename} not found. Proceeding without a blacklist.")
     return blacklist
 
 def is_blacklisted(item, blacklist):
-    heading = item.get('heading', '').lower()
-    seller = item.get('seller', {}).get('name', '').lower()
-
-    # Check if the seller is in the blacklist
-    if seller in [s.lower() for s in blacklist['sellers']]:
+    # Check ad ID
+    ad_id = str(item.get('id', ''))
+    if ad_id in blacklist['ids']:
         return True
 
-    # Check if the heading and seller combination is in the blacklist
-    for blacklisted_heading, blacklisted_seller in blacklist['headings']:
-        if blacklisted_heading.lower() in heading:
-            if blacklisted_seller is None or blacklisted_seller.lower() == seller:
-                return True
+    # Check title against patterns
+    heading = item.get('heading', '').lower()
+    return any(pattern in heading for pattern in blacklist['patterns'])
 
-    return False
 
 def extract_model_info(text):
     text_lower = text.lower()
@@ -189,7 +178,7 @@ def extract_info(item, gpu_models):
         "matched_model_number": matched_model_number,
         "match_count": match_count,
         "location": item.get("location", "N/A"),
-        "seller": item.get("seller", {}).get("name", ""),
+        "ad_id": item.get("id", ""),
         "canonical_url": item.get("canonical_url", "")
     }
 

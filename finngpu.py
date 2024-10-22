@@ -172,7 +172,7 @@ def fetch_data(page=1):
     params = {
         "searchkey": "SEARCH_ID_BAP_COMMON",
         "product_category": ["2.93.3215.8368", "2.93.3215.46", "2.93.3215.44"],
-        "q": "skjermkort",
+        "q": "skjermkort or gpu",
         "price_from": 1000,
         "price_to": 8000,
         "trade_type": "1",
@@ -313,45 +313,53 @@ def reorder_csv_columns(df):
     return df[columns]
 
 def main():
-    parser = argparse.ArgumentParser(description="GPU listing processor")
-    parser.add_argument("-f", "--file", type=str, help="Path to existing CSV file to process")
-    parser.add_argument("-b", "--blacklist", type=str, default="blacklist.txt", help="Path to blacklist file")
-    parser.add_argument("-w", "--whitelist", type=str, help="Path to whitelist file")
-    args = parser.parse_args()
+        parser = argparse.ArgumentParser(description="GPU listing processor")
+        parser.add_argument("-f", "--file", type=str, help="Path to existing CSV file to process")
+        parser.add_argument("-b", "--blacklist", type=str, default="blacklist.txt", help="Path to blacklist file")
+        parser.add_argument("-w", "--whitelist", type=str, help="Path to whitelist file")
+        parser.add_argument("-o", "--output", type=str, help="Output file path. Can be just a filename or a full path. Defaults to finn_gpu_listings_YYYY-MM-DD.csv in current directory")
+        args = parser.parse_args()
 
-    gpu_models = load_gpu_models()
-    blacklist = load_blacklist(args.blacklist)
-    whitelist = load_whitelist(args.whitelist) if args.whitelist else {'patterns': [], 'ids': []}
+        gpu_models = load_gpu_models()
+        blacklist = load_blacklist(args.blacklist)
+        whitelist = load_whitelist(args.whitelist) if args.whitelist else {'patterns': [], 'ids': []}
 
-    if args.file:
-        df = process_existing_data(args.file, gpu_models, blacklist, whitelist)
-        output_filename = args.file
-    else:
-        df = fetch_and_process_data(gpu_models, blacklist, whitelist)
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        output_filename = f"finn_gpu_listings_{current_date}.csv"
+        if args.file:
+            df = process_existing_data(args.file, gpu_models, blacklist, whitelist)
+        else:
+            df = fetch_and_process_data(gpu_models, blacklist, whitelist)
 
-    initial_total = len(df)
-    df = df[df['model'] != 'Skipped']  # Remove skipped GPUs
-    initial_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
-    print(f"Initially matched models: {initial_known_count} out of {len(df)}")
+        if args.output:
+                output_path = args.output
+                # Create directories if a path is specified
+                output_dir = os.path.dirname(output_path)
+                if output_dir:
+                    os.makedirs(output_dir, exist_ok=True)
+        else:
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            output_path = f"finn_gpu_listings_{current_date}.csv"
 
-    # Process GPUs without extracted model
-    df = process_unknown_gpus(df, gpu_models)
+        initial_total = len(df)
+        df = df[df['model'] != 'Skipped']  # Remove skipped GPUs
+        initial_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
+        print(f"Initially matched models: {initial_known_count} out of {len(df)}")
 
-    df = reorder_csv_columns(df)
-    df.to_csv(output_filename, index=False)
-    print(f"Data saved to {output_filename}")
+        # Process GPUs without extracted model
+        df = process_unknown_gpus(df, gpu_models)
 
-    final_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
-    total_models = len(df)
+        df = reorder_csv_columns(df)
+        df.to_csv(output_path, index=False)
+        print(f"Data saved to {output_path}")
 
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.width', None)
-    print(df.head())
-    print(f"Final successfully matched models: {final_known_count} out of {total_models} ({final_known_count/total_models:.2%})")
-    print(f"Skipped items removed: {initial_total - len(df)}")
-    print(f"Improvement: {final_known_count - initial_known_count} additional models matched")
+        final_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
+        total_models = len(df)
+
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.width', None)
+        print(df.head())
+        print(f"Final successfully matched models: {final_known_count} out of {total_models} ({final_known_count/total_models:.2%})")
+        print(f"Skipped items removed: {initial_total - len(df)}")
+        print(f"Improvement: {final_known_count - initial_known_count} additional models matched")
 
 if __name__ == "__main__":
     main()

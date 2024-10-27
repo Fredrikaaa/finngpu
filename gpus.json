@@ -48,10 +48,16 @@
   "Radeon RX 6600 XT 8 GB",
   "Radeon RX 6600 8 GB",
   "Radeon RX 6500 XT 4 GB",
+  "Radeon RX 6400 4 GB",
   "Radeon RX 5700 XT 8 GB",
   "Radeon RX 5700 8 GB",
   "Radeon RX 5600 XT 6 GB",
   "Radeon RX 5500 XT 8 GB",
   "Radeon RX 590 8 GB",
-  "Radeon RX 580 8 GB"
+  "Radeon RX 580 8 GB",
+  "Intel Arc A770 16 GB",
+  "Intel Arc A770 8 GB",
+  "Intel Arc A750 8 GB",
+  "Intel Arc A580 8 GB",
+  "Intel Arc A380 6 GB"
 ]

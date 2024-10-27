@@ -49,13 +49,12 @@ def load_filter_list(filename: Path, list_type: str):
     return filter_list
 
 def match_gpu_model(text: str, gpu_models: list, debug=False) -> tuple:
-    """Match GPU model with special cases handling"""
+    """Match GPU model with multiple GPU detection"""
     text = text.lower()
     if debug:
         print(f"\nProcessing text: {text}")
 
-    # Updated pattern to include XTX and GRE as suffixes
-    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx)\s*)?(\d{3,4})\s*(ti|xt|xtx|gre|super|s)?\s*(?:(\d+)\s*gb)?\b'
+    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx|intel\s*arc|arc)\s*)?([a]?\d{3,4})\s*(ti|xt|xtx|gre|super|s)?\s*(?:(\d+)\s*gb)?\b'
     matches = list(re.finditer(pattern, text))
 
     if debug:
@@ -66,98 +65,111 @@ def match_gpu_model(text: str, gpu_models: list, debug=False) -> tuple:
     if not matches:
         return "Unknown", None, None, None, None, 0
 
-    match = matches[0]
-    number = match.group(1)
-    suffix = match.group(2) or ''
-    vram = match.group(3)
+    # Process all matches
+    all_matched_gpus = []
 
-    # Standardize 's' to 'super'
-    if suffix.lower() == 's':
-        suffix = 'super'
+    for match in matches:
+        number = match.group(1)
+        suffix = match.group(2) or ''
+        vram = match.group(3)
 
-    prefix = text[match.start():match.start(1)].strip()
-    brand = 'NVIDIA' if any(x in prefix for x in ['geforce', 'nvidia', 'rtx', 'gtx']) else \
-           'AMD' if any(x in prefix for x in ['radeon', 'rx']) else None
+        # Standardize 's' to 'super'
+        if suffix.lower() == 's':
+            suffix = 'super'
 
-    model_number = f"{number} {suffix}".strip()
+        prefix = text[match.start():match.start(1)].strip()
+        brand = 'NVIDIA' if any(x in prefix for x in ['geforce', 'nvidia', 'rtx', 'gtx']) else \
+               'AMD' if any(x in prefix for x in ['radeon', 'rx']) else \
+               'Intel' if any(x in prefix for x in ['intel arc', 'arc']) else None
 
-    if debug:
-        print(f"Extracted info:")
-        print(f"  Number: {number}")
-        print(f"  Suffix: {suffix}")
-        print(f"  Brand: {brand}")
-        print(f"  VRAM: {vram}")
-        print(f"  Model number: {model_number}")
+        model_number = f"{number} {suffix}".strip()
 
-    # Special case for RTX 2060
-    if number == "2060" and not suffix and not vram and brand == "NVIDIA":
         if debug:
-            print("  Special case: RTX 2060 without VRAM specified - assuming 6GB model")
-        # Find the 6GB model in gpu_models
+            print(f"\nProcessing match:")
+            print(f"  Number: {number}")
+            print(f"  Suffix: {suffix}")
+            print(f"  Brand: {brand}")
+            print(f"  VRAM: {vram}")
+            print(f"  Model number: {model_number}")
+
+        # Special case for RTX 2060
+        if number == "2060" and not suffix and not vram and brand == "NVIDIA":
+            for gpu in gpu_models:
+                if "2060" in gpu.lower() and "6 gb" in gpu.lower() and "super" not in gpu.lower():
+                    all_matched_gpus.append((gpu, brand, model_number, "6", model_number))
+                    continue
+
+        exact_matches = []
+        base_model_matches = []
+
         for gpu in gpu_models:
-            if "2060" in gpu.lower() and "6 gb" in gpu.lower() and "super" not in gpu.lower():
-                return gpu, brand, model_number, "6", model_number, 1
+            gpu_lower = gpu.lower()
+            if debug:
+                print(f"\nChecking against GPU: {gpu_lower}")
 
-    matches = []
-    exact_matches = []
-    base_model_matches = []
-
-    for gpu in gpu_models:
-        gpu_lower = gpu.lower()
-        if debug:
-            print(f"\nChecking against GPU: {gpu_lower}")
-
-        # Brand check
-        if brand:
-            gpu_brand = 'NVIDIA' if any(x in gpu_lower for x in ['geforce', 'rtx', 'gtx']) else \
-                       'AMD' if any(x in gpu_lower for x in ['radeon', 'rx']) else None
-            if gpu_brand and brand != gpu_brand:
-                if debug:
-                    print(f"  Skipping due to brand mismatch: {brand} != {gpu_brand}")
-                continue
-
-        if suffix:
-            # If input has a suffix, only look for exact matches
-            if re.search(rf'\b{model_number}\b', gpu_lower):
-                if debug:
-                    print(f"  Found exact match with suffix!")
-                if vram:
-                    vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
-                    if not vram_match:
-                        if debug:
-                            print(f"  Skipping due to VRAM mismatch")
-                        continue
-                exact_matches.append(gpu)
-        else:
-            # If input has no suffix, only match against base models (no suffix)
-            if not re.search(r'\b(ti|xt|xtx|gre|super)\b', gpu_lower):  # Updated suffix check
-                if re.search(rf'\b{number}\b', gpu_lower):
+            # Brand check
+            if brand:
+                gpu_brand = 'NVIDIA' if any(x in gpu_lower for x in ['geforce', 'rtx', 'gtx']) else \
+                           'AMD' if any(x in gpu_lower for x in ['radeon', 'rx']) else \
+                           'Intel' if any(x in gpu_lower for x in ['intel arc', 'arc']) else None
+                if gpu_brand and brand != gpu_brand:
                     if debug:
-                        print(f"  Found base model match (no suffix)!")
+                        print(f"  Skipping due to brand mismatch: {brand} != {gpu_brand}")
+                    continue
+
+            if suffix:
+                # If input has a suffix, only look for exact matches
+                if re.search(rf'\b{model_number}\b', gpu_lower):
+                    if debug:
+                        print(f"  Found exact match with suffix!")
                     if vram:
                         vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
                         if not vram_match:
                             if debug:
                                 print(f"  Skipping due to VRAM mismatch")
                             continue
-                    base_model_matches.append(gpu)
+                    exact_matches.append(gpu)
             else:
-                if debug:
-                    print(f"  Skipping variant model because input has no suffix")
+                # If input has no suffix, only match against base models (no suffix)
+                if not re.search(r'\b(ti|xt|xtx|gre|super)\b', gpu_lower):
+                    if re.search(rf'\b{number}\b', gpu_lower):
+                        if debug:
+                            print(f"  Found base model match!")
+                        if vram:
+                            vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
+                            if not vram_match:
+                                if debug:
+                                    print(f"  Skipping due to VRAM mismatch")
+                                continue
+                        base_model_matches.append(gpu)
+                else:
+                    if debug:
+                        print(f"  Skipping variant model because input has no suffix")
+
+        # Use exact matches if found, otherwise use base matches
+        matches_for_this_gpu = exact_matches if exact_matches else base_model_matches
+
+        if matches_for_this_gpu:
+            if len(matches_for_this_gpu) == 1:
+                all_matched_gpus.append((matches_for_this_gpu[0], brand, model_number, vram, model_number))
+            else:
+                # If multiple matches for this specific GPU pattern, add all of them
+                for gpu in matches_for_this_gpu:
+                    all_matched_gpus.append((gpu, brand, model_number, vram, model_number))
 
     if debug:
-        print(f"\nFinal matches:")
-        print(f"  Exact matches: {exact_matches}")
-        print(f"  Base matches: {base_model_matches}")
+        print("\nAll matched GPUs:", all_matched_gpus)
 
-    # Use exact matches if found, otherwise use base matches
-    matches = exact_matches if exact_matches else base_model_matches
+    if not all_matched_gpus:
+        return "Unknown", None, None, None, None, 0
 
-    if not matches:
-        return "Unknown", brand, model_number, vram, model_number, 0
-    if len(matches) == 1:
-        return matches[0], brand, model_number, vram, model_number, 1
-    return "Multi", brand, model_number, vram, model_number, len(matches)
+    # If we found multiple different GPUs, return Multi
+    if len(set(gpu[0] for gpu in all_matched_gpus)) > 1:
+        matched_models = [gpu[2] for gpu in all_matched_gpus]
+        return "Multi", None, matched_models, None, matched_models[0], len(all_matched_gpus)
+
+    # If all matches are for the same GPU, return that one
+    return all_matched_gpus[0][0], all_matched_gpus[0][1], all_matched_gpus[0][2], all_matched_gpus[0][3], all_matched_gpus[0][4], 1
 
 def fetch_page(page: int = 1) -> dict:
     """Fetch a single page of GPU listings"""

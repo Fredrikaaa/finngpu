@@ -30,7 +30,7 @@ BLACKLIST_FILE = BASE_DIR / "blacklist.txt"
 WHITELIST_FILE = BASE_DIR / "whitelist.txt"
 
 # Listing processing
-SKIP_TERMS = ['pc', 'stasjonær', 'mining']
+SKIP_TERMS = ['pc', 'stasjonær', 'mining', 'mac']
 
 # Output settings
 OUTPUT_FORMAT = "finn_gpu_listings_{date}.csv"

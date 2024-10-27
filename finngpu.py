@@ -48,50 +48,110 @@ def load_filter_list(filename: Path, list_type: str):
         print(f"Warning: {list_type} file {filename} not found, proceeding without it")
     return filter_list
 
-def match_gpu_model(text: str, gpu_models: list) -> tuple:
-    """Match GPU model from text with improved pattern matching"""
+def match_gpu_model(text: str, gpu_models: list, debug=False) -> tuple:
+    """Match GPU model with special cases handling"""
     text = text.lower()
+    if debug:
+        print(f"\nProcessing text: {text}")
 
-    # Main pattern for GPU model detection
-    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx)\s*)?(\d{3,4})\s*(ti|xt|super)?\s*(?:(\d+)\s*gb)?\b'
+    # Updated pattern to include XTX and GRE as suffixes
+    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx)\s*)?(\d{3,4})\s*(ti|xt|xtx|gre|super|s)?\s*(?:(\d+)\s*gb)?\b'
     matches = list(re.finditer(pattern, text))
+
+    if debug:
+        print(f"Regex matches found: {len(matches)}")
+        for m in matches:
+            print(f"Match groups: {m.groups()}")
 
     if not matches:
         return "Unknown", None, None, None, None, 0
 
-    # Extract info from best match
-    match = matches[0]  # Take first match as primary
+    match = matches[0]
     number = match.group(1)
     suffix = match.group(2) or ''
     vram = match.group(3)
 
-    # Determine brand from text
+    # Standardize 's' to 'super'
+    if suffix.lower() == 's':
+        suffix = 'super'
+
     prefix = text[match.start():match.start(1)].strip()
     brand = 'NVIDIA' if any(x in prefix for x in ['geforce', 'nvidia', 'rtx', 'gtx']) else \
            'AMD' if any(x in prefix for x in ['radeon', 'rx']) else None
 
     model_number = f"{number} {suffix}".strip()
 
-    # Find matching models
+    if debug:
+        print(f"Extracted info:")
+        print(f"  Number: {number}")
+        print(f"  Suffix: {suffix}")
+        print(f"  Brand: {brand}")
+        print(f"  VRAM: {vram}")
+        print(f"  Model number: {model_number}")
+
+    # Special case for RTX 2060
+    if number == "2060" and not suffix and not vram and brand == "NVIDIA":
+        if debug:
+            print("  Special case: RTX 2060 without VRAM specified - assuming 6GB model")
+        # Find the 6GB model in gpu_models
+        for gpu in gpu_models:
+            if "2060" in gpu.lower() and "6 gb" in gpu.lower() and "super" not in gpu.lower():
+                return gpu, brand, model_number, "6", model_number, 1
+
     matches = []
+    exact_matches = []
+    base_model_matches = []
+
     for gpu in gpu_models:
         gpu_lower = gpu.lower()
+        if debug:
+            print(f"\nChecking against GPU: {gpu_lower}")
 
-        # Skip if brands don't match (when brand is known)
+        # Brand check
         if brand:
             gpu_brand = 'NVIDIA' if any(x in gpu_lower for x in ['geforce', 'rtx', 'gtx']) else \
                        'AMD' if any(x in gpu_lower for x in ['radeon', 'rx']) else None
             if gpu_brand and brand != gpu_brand:
+                if debug:
+                    print(f"  Skipping due to brand mismatch: {brand} != {gpu_brand}")
                 continue
 
-        # Check model number match
-        if re.search(rf'\b{model_number}\b', gpu_lower):
-            # Verify VRAM if specified
-            if vram:
-                vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
-                if not vram_match:
-                    continue
-            matches.append(gpu)
+        if suffix:
+            # If input has a suffix, only look for exact matches
+            if re.search(rf'\b{model_number}\b', gpu_lower):
+                if debug:
+                    print(f"  Found exact match with suffix!")
+                if vram:
+                    vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
+                    if not vram_match:
+                        if debug:
+                            print(f"  Skipping due to VRAM mismatch")
+                        continue
+                exact_matches.append(gpu)
+        else:
+            # If input has no suffix, only match against base models (no suffix)
+            if not re.search(r'\b(ti|xt|xtx|gre|super)\b', gpu_lower):  # Updated suffix check
+                if re.search(rf'\b{number}\b', gpu_lower):
+                    if debug:
+                        print(f"  Found base model match (no suffix)!")
+                    if vram:
+                        vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
+                        if not vram_match:
+                            if debug:
+                                print(f"  Skipping due to VRAM mismatch")
+                            continue
+                    base_model_matches.append(gpu)
+            else:
+                if debug:
+                    print(f"  Skipping variant model because input has no suffix")
+
+    if debug:
+        print(f"\nFinal matches:")
+        print(f"  Exact matches: {exact_matches}")
+        print(f"  Base matches: {base_model_matches}")
+
+    # Use exact matches if found, otherwise use base matches
+    matches = exact_matches if exact_matches else base_model_matches
 
     if not matches:
         return "Unknown", brand, model_number, vram, model_number, 0
@@ -123,33 +183,41 @@ def fetch_description(url: str) -> str:
         return ""
 
 def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: dict) -> pd.DataFrame:
-    """Process raw listings into structured data"""
+    """Process raw listings into structured data with progress tracking"""
     processed_items = []
+    skipped_count = 0
 
-    for item in items:
-        # Skip if blacklisted
+    pbar = tqdm(items, desc="Processing listings")
+    unknown_count = 0
+
+    for item in pbar:
+        heading = item.get('heading', '').lower()
+
+        # Skip blacklisted
         if str(item.get('id', '')) in blacklist['ids'] or \
-           any(pattern in item.get('heading', '').lower() for pattern in blacklist['patterns']):
+           any(pattern in heading for pattern in blacklist['patterns']):
             continue
 
-        # Skip if not whitelisted (when whitelist is used)
+        # Skip whitelisted (when whitelist is used)
         if whitelist['patterns'] or whitelist['ids']:
             if str(item.get('id', '')) not in whitelist['ids'] and \
-               not any(pattern in item.get('heading', '').lower() for pattern in whitelist['patterns']):
+               not any(pattern in heading for pattern in whitelist['patterns']):
                 continue
 
-        # Extract GPU info
-        heading = item.get('heading', '')
+        # Skip items containing skip terms
+        if any(term in heading for term in SKIP_TERMS):
+            skipped_count += 1
+            continue
+
+        # Extract GPU info from title
         model, brand, model_number, vram, matched_number, match_count = match_gpu_model(heading, gpu_models)
 
-        # If no match found in title, try description
+        # Track if we'll need to fetch description
         if model == "Unknown":
-            description = fetch_description(item.get('canonical_url', ''))
-            if description:
-                model, brand, model_number, vram, matched_number, match_count = match_gpu_model(description, gpu_models)
+            unknown_count += 1
 
         processed_items.append({
-            "heading": heading,
+            "heading": item.get('heading', ''),
             "price": item.get("price", {}).get("amount", "N/A"),
             "model": model,
             "extracted_brand": brand,
@@ -161,6 +229,29 @@ def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: 
             "ad_id": item.get("id", ""),
             "canonical_url": item.get("canonical_url", "")
         })
+
+    print(f"\nSkipped {skipped_count} items containing: {', '.join(SKIP_TERMS)}")
+
+    # Fetch descriptions for unknowns if needed
+    if unknown_count > 0:
+        print(f"\nFetching descriptions for {unknown_count} unmatched items...")
+        desc_pbar = tqdm(processed_items, desc="Fetching descriptions")
+
+        for item in desc_pbar:
+            if item["model"] == "Unknown":
+                desc_pbar.set_postfix_str(f"Processing: {item['ad_id']}...")
+                description = fetch_description(item["canonical_url"])
+                if description:
+                    model, brand, model_number, vram, matched_number, match_count = match_gpu_model(description, gpu_models)
+                    if model != "Unknown":
+                        item.update({
+                            "model": model,
+                            "extracted_brand": brand,
+                            "extracted_model": model_number,
+                            "extracted_vram": vram,
+                            "matched_model_number": matched_number,
+                            "match_count": match_count
+                        })
 
     return pd.DataFrame(processed_items)
 

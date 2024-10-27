@@ -261,7 +261,7 @@ if [ $FINNGPU_EXIT_CODE -eq 0 ]; then
         log "Running GPU analysis"
         python gpu_analysis.py \
             -f "$LISTINGS_DIR/$newest_csv" \
-            -p "1440p-ultra-performance.txt" \
+            -p "1440p-ultra-performance.csv" \
             -c "$CURRENT_ANALYSIS" \
             2>&1 | tee -a "$LOG_FILE"
         

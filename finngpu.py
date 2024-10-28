@@ -1,365 +1,390 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from tqdm import tqdm
 import json
 import re
 import argparse
 import time
-from collections import deque
+from pathlib import Path
 from datetime import datetime
+from tqdm import tqdm
+from config import *
 
 class RateLimiter:
-    def __init__(self, max_calls, period):
-        self.max_calls = max_calls
-        self.period = period
-        self.calls = deque()
+    """Simple time-based rate limiter"""
+    def __init__(self, max_calls_per_second: int):
+        self.min_interval = 1.0 / max_calls_per_second
+        self.last_call = 0
 
     def __call__(self):
         now = time.time()
-        while self.calls and self.calls[0] <= now - self.period:
-            self.calls.popleft()
-        if len(self.calls) >= self.max_calls:
-            sleep_time = self.calls[0] - (now - self.period)
-            time.sleep(sleep_time)
-        self.calls.append(time.time())
-
-# Rate limiter: 4 calls per second
-rate_limiter = RateLimiter(4, 1)
+        time_since_last = now - self.last_call
+        if time_since_last < self.min_interval:
+            time.sleep(self.min_interval - time_since_last)
+        self.last_call = time.time()
 
 def load_gpu_models():
-    with open('gpus.json', 'r') as f:
-        return json.load(f)
-
-def load_blacklist(filename):
-    blacklist = {'patterns': [], 'ids': []}
+    """Load GPU models from JSON file"""
     try:
-        with open(filename, 'r') as f:
+        with open(MODELS_FILE) as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print(f"Error: {MODELS_FILE} not found")
+        return []
+
+def load_filter_list(filename: Path, list_type: str):
+    """Load blacklist or whitelist from file"""
+    filter_list = {'patterns': [], 'ids': []}
+    try:
+        with open(filename) as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#'):
-                    # If the line contains only digits, treat it as an ID
                     if line.isdigit():
-                        blacklist['ids'].append(line)
+                        filter_list['ids'].append(line)
                     else:
-                        blacklist['patterns'].append(line.lower())
+                        filter_list['patterns'].append(line.lower())
     except FileNotFoundError:
-        print(f"Blacklist file {filename} not found. Proceeding without a blacklist.")
-    return blacklist
+        print(f"Warning: {list_type} file {filename} not found, proceeding without it")
+    return filter_list
 
-def is_blacklisted(item, blacklist):
-    # Check ad ID
-    ad_id = str(item.get('id', ''))
-    if ad_id in blacklist['ids']:
-        return True
+def match_gpu_model(text: str, gpu_models: list, debug=False) -> tuple:
+    """Match GPU model with multiple GPU detection"""
+    text = text.lower()
+    if debug:
+        print(f"\nProcessing text: {text}")
 
-    # Check title against patterns
-    heading = item.get('heading', '').lower()
-    return any(pattern in heading for pattern in blacklist['patterns'])
+    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx|intel\s*arc|arc)\s*)?([a]?\d{3,4})\s*[-\s]*(ti|xt|xtx|gre|super|s)?\s*(?:(\d+)\s*gb)?\b'
+    matches = list(re.finditer(pattern, text))
 
-def load_whitelist(filename):
-    whitelist = {'patterns': [], 'ids': []}
-    try:
-        with open(filename, 'r') as f:
-            for line in f:
-                line = line.strip()
-                if line and not line.startswith('#'):
-                    # If the line contains only digits, treat it as an ID
-                    if line.isdigit():
-                        whitelist['ids'].append(line)
-                    else:
-                        whitelist['patterns'].append(line.lower())
-    except FileNotFoundError:
-        print(f"Whitelist file {filename} not found. Proceeding without a whitelist.")
-    return whitelist
+    if debug:
+        print(f"Regex matches found: {len(matches)}")
+        for m in matches:
+            print(f"Match groups: {m.groups()}")
+            print(f"Full match: '{m.group(0)}'")
+            print(f"Context: '...{text[max(0, m.start()-20):m.end()+20]}...'")
 
-def is_whitelisted(item, whitelist):
-    if not whitelist['patterns'] and not whitelist['ids']:
-        return True  # If whitelist is empty, accept everything
+    if not matches:
+        return "Unknown", None, None, None, None, 0
 
-    # Check ad ID
-    ad_id = str(item.get('id', ''))
-    if ad_id in whitelist['ids']:
-        return True
+    # Process all matches
+    all_matched_gpus = []
 
-    # Check title against patterns
-    heading = item.get('heading', '').lower()
-    return any(pattern in heading for pattern in whitelist['patterns'])
+    for match in matches:
+        number = match.group(1)
+        suffix = match.group(2) or ''
+        vram = match.group(3)
 
-def extract_model_info(text):
-    text_lower = text.lower()
-
-    model_pattern = r'\b(gtx|rtx|rx)?\s*(\d{3,4})\s*(ti|xt|super|s)?\b'
-    model_matches = re.findall(model_pattern, text_lower)
-
-    model_numbers = []
-    model_brands = []  # Track brand for each model number
-    for prefix, number, suffix in model_matches:
-        if suffix == 's':
+        # Standardize 's' to 'super'
+        if suffix.lower() == 's':
             suffix = 'super'
-        if prefix:
-            # If we have a prefix, we know the brand
-            if prefix in ['gtx', 'rtx']:
-                model_brands.append('NVIDIA')
-            elif prefix == 'rx':
-                model_brands.append('AMD')
-        else:
-            # No prefix means brand is unknown
-            model_brands.append(None)
 
-        model = f"{prefix} {number} {suffix}".strip()
-        model = ' '.join(model.split())
-        if model:
-            model_numbers.append(model)
+        prefix = text[match.start():match.start(1)].strip()
+        brand = 'NVIDIA' if any(x in prefix for x in ['geforce', 'nvidia', 'rtx', 'gtx']) else \
+               'AMD' if any(x in prefix for x in ['radeon', 'rx']) else \
+               'Intel' if any(x in prefix for x in ['intel arc', 'arc']) else None
 
-    vram = re.search(r'(\d+)\s*gb', text_lower)
-    vram = vram.group(1) if vram else None
+        model_number = f"{number} {suffix}".strip()
 
-    return model_brands, model_numbers, vram
+        if debug:
+            print(f"\nProcessing match:")
+            print(f"  Number: {number}")
+            print(f"  Suffix: {suffix}")
+            print(f"  Brand: {brand}")
+            print(f"  VRAM: {vram}")
+            print(f"  Model number: {model_number}")
 
-def match_gpu_model(title, gpu_models):
-    model_brands, model_numbers, vram = extract_model_info(title)
+        # Special case for RTX 2060
+        if number == "2060" and not suffix:
+            found_2060_match = False
+            for gpu in gpu_models:
+                gpu_lower = gpu.lower()
+                # Only match base 2060 6GB model if no explicit VRAM is specified in the title
+                if "2060" in gpu_lower and "6 gb" in gpu_lower and "super" not in gpu_lower:
+                    # Only add if no VRAM was specified or if specified VRAM matches
+                    if not vram or vram == "6":
+                        all_matched_gpus.append((gpu, brand, "2060", "6", "2060"))
+                        found_2060_match = True
+                        break
+            if found_2060_match:
+                continue
 
-    if not model_numbers:
-        return "Unknown", None, None, vram, None, 0
+        exact_matches = []
+        base_model_matches = []
 
-    matches = []
-    for gpu in reversed(gpu_models):
-        gpu_lower = gpu.lower()
-        # Determine the brand of the GPU model from database
-        gpu_brand = None
-        if 'geforce' in gpu_lower or 'gtx' in gpu_lower or 'rtx' in gpu_lower:
-            gpu_brand = 'NVIDIA'
-        elif 'radeon' in gpu_lower or 'rx' in gpu_lower:
-            gpu_brand = 'AMD'
+        for gpu in gpu_models:
+            gpu_lower = gpu.lower()
+            if debug:
+                print(f"\nChecking against GPU: {gpu_lower}")
 
-        for idx, model_number in enumerate(model_numbers):
-            model_lower = model_number.lower()
-            model_brand = model_brands[idx]  # Get the brand associated with this model
+            # Brand check
+            if brand:
+                gpu_brand = 'NVIDIA' if any(x in gpu_lower for x in ['geforce', 'rtx', 'gtx']) else \
+                           'AMD' if any(x in gpu_lower for x in ['radeon', 'rx']) else \
+                           'Intel' if any(x in gpu_lower for x in ['intel arc', 'arc']) else None
+                if gpu_brand and brand != gpu_brand:
+                    if debug:
+                        print(f"  Skipping due to brand mismatch: {brand} != {gpu_brand}")
+                    continue
 
-            if model_lower in gpu_lower:
-                is_match = re.search(rf'\b{re.escape(model_lower)}\b', gpu_lower)
-
-                # Handle suffix matching
-                if ' ti' in gpu_lower:
-                    is_match = is_match and ' ti' in model_lower
-                elif ' super' in gpu_lower:
-                    is_match = is_match and ' super' in model_lower
-                elif ' xt' in gpu_lower:
-                    is_match = is_match and ' xt' in model_lower
-
-                if is_match:
-                    # Match if brands match or model_brand is None (brand not specified)
-                    if model_brand is None or model_brand == gpu_brand:
+            if suffix:
+                # If input has a suffix, only look for exact matches
+                if re.search(rf'\b{model_number}\b', gpu_lower):
+                    if debug:
+                        print(f"  Found exact match with suffix!")
+                    if vram:
+                        vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
+                        if not vram_match:
+                            if debug:
+                                print(f"  Skipping due to VRAM mismatch")
+                            continue
+                    exact_matches.append(gpu)
+            else:
+                # If input has no suffix, only match against base models (no suffix)
+                if not re.search(r'\b(ti|xt|xtx|gre|super)\b', gpu_lower):
+                    if re.search(rf'\b{number}\b', gpu_lower):
+                        if debug:
+                            print(f"  Found base model match!")
                         if vram:
-                            vram_match = re.search(r'(\d+)\s*gb', gpu_lower)
-                            if vram_match and int(vram_match.group(1)) == int(vram):
-                                matches.append((gpu, gpu_brand, model_number, vram, model_number))
-                        else:
-                            matches.append((gpu, gpu_brand, model_number, vram, model_number))
+                            vram_match = re.search(rf'{vram}\s*gb', gpu_lower)
+                            if not vram_match:
+                                if debug:
+                                    print(f"  Skipping due to VRAM mismatch")
+                                continue
+                        base_model_matches.append(gpu)
+                else:
+                    if debug:
+                        print(f"  Skipping variant model because input has no suffix")
 
-    if len(matches) > 1:
-        return "Multi", None, [m[2] for m in matches], vram, [m[4] for m in matches], len(matches)
-    elif len(matches) == 1:
-        return matches[0] + (1,)
-    else:
-        return "Unknown", None, model_numbers[0] if model_numbers else None, vram, None, 0
+        # Use exact matches if found, otherwise use base matches
+        matches_for_this_gpu = exact_matches if exact_matches else base_model_matches
 
-def fetch_data(page=1):
-    rate_limiter()
+        if matches_for_this_gpu:
+            if len(matches_for_this_gpu) == 1:
+                all_matched_gpus.append((matches_for_this_gpu[0], brand, model_number, vram, model_number))
+            else:
+                # If multiple matches for this specific GPU pattern, add all of them
+                for gpu in matches_for_this_gpu:
+                    all_matched_gpus.append((gpu, brand, model_number, vram, model_number))
 
-    base_url = "https://www.finn.no/api/search-qf"
-    params = {
-        "searchkey": "SEARCH_ID_BAP_COMMON",
-        "product_category": ["2.93.3215.8368", "2.93.3215.46", "2.93.3215.44"],
-        "q": "skjermkort or gpu",
-        "price_from": 1000,
-        "price_to": 8000,
-        "trade_type": "1",
-        "vertical": "bap",
-        "page": page
-    }
+    if debug:
+        print("\nAll matched GPUs:", all_matched_gpus)
+
+    if not all_matched_gpus:
+        return "Unknown", None, None, None, None, 0
+
+    # If we found multiple different GPUs, return Multi
+    if len(set(gpu[0] for gpu in all_matched_gpus)) > 1:
+        matched_models = [gpu[2] for gpu in all_matched_gpus]
+        return "Multi", None, matched_models, None, matched_models[0], len(all_matched_gpus)
+
+    # If all matches are for the same GPU, return that one
+    return all_matched_gpus[0][0], all_matched_gpus[0][1], all_matched_gpus[0][2], all_matched_gpus[0][3], all_matched_gpus[0][4], 1
+
+def fetch_page(page: int = 1) -> dict:
+    """Fetch a single page of GPU listings"""
+    params = API["params"].copy()
+    params["page"] = page
     try:
-        response = requests.get(base_url, params=params)
+        response = requests.get(API["base_url"], params=params, timeout=30)
         response.raise_for_status()
         return response.json()
     except requests.RequestException as e:
-        print(f"An error occurred while fetching data: {e}")
+        print(f"Error fetching page {page}: {e}")
         return None
 
-def extract_info(item, gpu_models):
-    heading = item.get("heading", "")
-    model, brand, model_number, vram, matched_model_number, match_count = match_gpu_model(heading, gpu_models)
-    return {
-        "heading": heading,
-        "price": item.get("price", {}).get("amount", "N/A"),
-        "model": model,
-        "extracted_brand": brand,
-        "extracted_model": model_number,
-        "extracted_vram": vram,
-        "matched_model_number": matched_model_number,
-        "match_count": match_count,
-        "location": item.get("location", "N/A"),
-        "ad_id": item.get("id", ""),
-        "canonical_url": item.get("canonical_url", "")
-    }
-
-def fetch_and_process_data(gpu_models, blacklist, whitelist):
-    all_items = []
-    page = 1
-    total_pages = 1  # We'll update this after the first request
-
-    with tqdm(total=None, desc="Fetching pages") as pbar:
-        while page <= total_pages:
-            rate_limiter()
-            data = fetch_data(page)
-            if not data:
-                break
-
-            if page == 1:
-                total_pages = data.get("metadata", {}).get("paging", {}).get("last", 1)
-                pbar.total = total_pages
-
-            items = data.get("docs", [])
-            processed_items = [
-                extract_info(item, gpu_models)
-                for item in items
-                if (not is_blacklisted(item, blacklist) and is_whitelisted(item, whitelist))
-            ]
-            all_items.extend(processed_items)
-
-            page += 1
-            pbar.update(1)
-
-            if not items:
-                break  # No more results
-
-    return pd.DataFrame(all_items)
-
-def fetch_and_parse_description(url):
-    rate_limiter()  # Apply rate limiting
+def fetch_description(url: str) -> str:
+    """Fetch and parse item description"""
     try:
-        response = requests.get(url)
+        response = requests.get(url, timeout=30)
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
         about_section = soup.find('section', class_='about-section')
         if about_section:
-            return about_section.get_text(strip=True)
+            # Get text while preserving spaces and newlines
+            text = about_section.get_text(separator=' ', strip=True)
+            # Replace multiple spaces with single space
+            text = re.sub(r'\s+', ' ', text)
+            return text
         return ""
-    except requests.RequestException as e:
-        print(f"An error occurred while fetching description for {url}: {e}")
+    except requests.RequestException:
         return ""
 
-def process_unknown_gpus(df, gpu_models):
-    unknown_mask = (df['model'] == 'Unknown')
-    unknown_df = df[unknown_mask]
+def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: dict, verbose: bool = False) -> pd.DataFrame:
+    """Process raw listings into structured data with progress tracking"""
+    processed_items = []
+    skipped_count = 0
 
-    print(f"Processing {len(unknown_df)} GPUs without extracted model")
+    pbar = tqdm(items, desc="Processing listings")
+    unknown_count = 0
 
-    tqdm.pandas(desc="Processing GPUs without extracted model")
+    for item in pbar:
+        heading = item.get('heading', '').lower()
+        ad_id = str(item.get('id', ''))
 
-    def process_row(row):
-        description = fetch_and_parse_description(row['canonical_url'])
-        old_model = row['model']
-        model, brand, model_number, vram, matched_model_number, match_count = match_gpu_model(description, gpu_models)
-        if model != 'Unknown' and model != 'Skipped':
-            row['model'] = model
-            row['extracted_brand'] = brand
-            row['extracted_model'] = model_number
-            row['extracted_vram'] = vram
-            row['matched_model_number'] = matched_model_number
-            row['match_count'] = match_count
-        return row
+        # If whitelist exists, only process whitelisted items
+        if whitelist['patterns'] or whitelist['ids']:
+            if ad_id not in whitelist['ids'] and \
+               not any(pattern in heading for pattern in whitelist['patterns']):
+                continue
+            elif verbose:
+                print(f"\nProcessing whitelisted item {ad_id}:")
+                print(f"Title: {heading}")
+        else:
+            # If no whitelist, apply blacklist and skip terms
+            if ad_id in blacklist['ids'] or \
+               any(pattern in heading for pattern in blacklist['patterns']):
+                continue
 
-    updated_unknown_df = unknown_df.progress_apply(process_row, axis=1)
-    df.update(updated_unknown_df)
+            if any(term in heading for term in SKIP_TERMS):
+                skipped_count += 1
+                continue
 
-    successfully_matched = ((updated_unknown_df['model'] != 'Unknown') & (updated_unknown_df['model'] != 'Skipped')).sum()
-    print(f"Successfully matched {successfully_matched} out of {len(unknown_df)} previously unknown GPUs")
+        # Extract GPU info from title
+        model, brand, model_number, vram, matched_number, match_count = match_gpu_model(heading, gpu_models, debug=verbose)
 
-    return df
+        if verbose:
+            print(f"Matched model: {model}")
+            if brand:
+                print(f"Brand: {brand}")
+            if model_number:
+                print(f"Model number: {model_number}")
+            if vram:
+                print(f"VRAM: {vram}GB")
+            print("-" * 80)
 
-def process_existing_data(filename, gpu_models, blacklist, whitelist):
-    df = pd.read_csv(filename)
-    tqdm.pandas(desc="Processing existing data")
+        # Track if we'll need to fetch description
+        if model == "Unknown":
+            unknown_count += 1
 
-    # Add debugging prints to see what we're processing
-    print("\nProcessing existing data with these debug prints:")
-    print(f"Total rows before filtering: {len(df)}")
+        processed_items.append({
+            "heading": item.get('heading', ''),
+            "price": item.get("price", {}).get("amount", "N/A"),
+            "model": model,
+            "brand": brand,
+            "model_number": model_number,
+            "vram": vram,
+            "matched_number": matched_number,
+            "match_count": match_count,
+            "location": item.get("location", "N/A"),
+            "ad_id": ad_id,
+            "canonical_url": item.get("canonical_url", "")
+        })
 
-    df['is_blacklisted'] = df.apply(lambda row: is_blacklisted(
-        {'heading': row['heading'], 'id': row.get('ad_id', '')}, blacklist), axis=1)
-    df['is_whitelisted'] = df.apply(lambda row: is_whitelisted(
-        {'heading': row['heading'], 'id': row.get('ad_id', '')}, whitelist), axis=1)
+    print(f"\nSkipped {skipped_count} items containing: {', '.join(SKIP_TERMS)}")
 
-    # Keep only rows that pass both blacklist and whitelist
-    df = df[~df['is_blacklisted'] & df['is_whitelisted']].drop(['is_blacklisted', 'is_whitelisted'], axis=1)
+    # Fetch descriptions for unknowns if needed
+    if unknown_count > 0:
+        rate_limit = RateLimiter(API["rate_limit"])
+        print(f"\nFetching descriptions for {unknown_count} unmatched items...")
+        desc_pbar = tqdm(processed_items, desc="Fetching descriptions")
 
-    print(f"Rows after filtering: {len(df)}")
+        for item in desc_pbar:
+            if item["model"] == "Unknown":
+                desc_pbar.set_postfix_str(f"Processing: {item['ad_id']}...")
+                rate_limit()
+                description = fetch_description(item["canonical_url"])
+                if description:
+                    if verbose:
+                        print(f"\nTrying to match from description for {item['ad_id']}:")
+                        print(f"Description: {description[:200]}...")
 
-    # Add debugging prints for model matching
-    def debug_model_match(heading):
-        print(f"\nProcessing heading: {heading}")
-        return pd.Series(match_gpu_model(heading, gpu_models))
+                    model, brand, model_number, vram, matched_number, match_count = match_gpu_model(
+                        description, gpu_models, debug=verbose
+                    )
 
-    df[['model', 'extracted_brand', 'extracted_model', 'extracted_vram', 'matched_model_number', 'match_count']] = \
-        df['heading'].apply(debug_model_match)
+                    if model != "Unknown":
+                        item.update({
+                            "model": model,
+                            "brand": brand,
+                            "model_number": model_number,
+                            "vram": vram,
+                            "matched_number": matched_number,
+                            "match_count": match_count
+                        })
 
-    return df
-
-def reorder_csv_columns(df):
-    columns = df.columns.tolist()
-    columns.append(columns.pop(columns.index('canonical_url')))
-    return df[columns]
+    return pd.DataFrame(processed_items)
 
 def main():
-        parser = argparse.ArgumentParser(description="GPU listing processor")
-        parser.add_argument("-f", "--file", type=str, help="Path to existing CSV file to process")
-        parser.add_argument("-b", "--blacklist", type=str, default="blacklist.txt", help="Path to blacklist file")
-        parser.add_argument("-w", "--whitelist", type=str, help="Path to whitelist file")
-        parser.add_argument("-o", "--output", type=str, help="Output file path. Can be just a filename or a full path. Defaults to finn_gpu_listings_YYYY-MM-DD.csv in current directory")
-        args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="Fetch and process GPU listings from Finn.no")
+    parser.add_argument("-f", "--file", type=str, help="Process existing CSV file")
+    parser.add_argument("-b", "--blacklist", type=Path, default=BLACKLIST_FILE, help="Blacklist file path")
+    parser.add_argument("-w", "--whitelist", type=Path, help="Whitelist file path")
+    parser.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+    args = parser.parse_args()
 
-        gpu_models = load_gpu_models()
-        blacklist = load_blacklist(args.blacklist)
-        whitelist = load_whitelist(args.whitelist) if args.whitelist else {'patterns': [], 'ids': []}
+    # Load GPU models and filter lists
+    gpu_models = load_gpu_models()
+    blacklist = load_filter_list(args.blacklist, "blacklist")
+    whitelist = load_filter_list(args.whitelist, "whitelist") if args.whitelist else {'patterns': [], 'ids': []}
 
-        if args.file:
-            df = process_existing_data(args.file, gpu_models, blacklist, whitelist)
-        else:
-            df = fetch_and_process_data(gpu_models, blacklist, whitelist)
+    if args.verbose:
+        print("\nLoaded configuration:")
+        if whitelist['ids']:
+            print(f"Whitelist IDs: {', '.join(whitelist['ids'])}")
+        if whitelist['patterns']:
+            print(f"Whitelist patterns: {', '.join(whitelist['patterns'])}")
+        print(f"Skip terms: {', '.join(SKIP_TERMS)}")
+        print("-" * 80)
 
-        if args.output:
-                output_path = args.output
-                # Create directories if a path is specified
-                output_dir = os.path.dirname(output_path)
-                if output_dir:
-                    os.makedirs(output_dir, exist_ok=True)
-        else:
-            current_date = datetime.now().strftime("%Y-%m-%d")
-            output_path = f"finn_gpu_listings_{current_date}.csv"
+    # Set up rate limiter
+    rate_limit = RateLimiter(API["rate_limit"])
 
-        initial_total = len(df)
-        df = df[df['model'] != 'Skipped']  # Remove skipped GPUs
-        initial_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
-        print(f"Initially matched models: {initial_known_count} out of {len(df)}")
+    if args.file:
+        # Process existing file
+        try:
+            df = pd.read_csv(args.file)
+        except Exception as e:
+            print(f"Error reading file: {e}")
+            return
+    else:
+        # Fetch new listings
+        all_items = []
+        page = 1
+        with tqdm(desc="Fetching pages") as pbar:
+            while True:
+                rate_limit()
+                data = fetch_page(page)
+                if not data:
+                    break
 
-        # Process GPUs without extracted model
-        df = process_unknown_gpus(df, gpu_models)
+                items = data.get("docs", [])
+                if not items:
+                    break
 
-        df = reorder_csv_columns(df)
-        df.to_csv(output_path, index=False)
-        print(f"Data saved to {output_path}")
+                all_items.extend(items)
+                page += 1
+                pbar.update(1)
 
-        final_known_count = df['model'].value_counts().drop(['Unknown'], errors='ignore').sum()
-        total_models = len(df)
+        # Process fetched listings
+        df = process_listings(all_items, gpu_models, blacklist, whitelist, verbose=args.verbose)
 
-        pd.set_option('display.max_columns', None)
-        pd.set_option('display.width', None)
-        print(df.head())
-        print(f"Final successfully matched models: {final_known_count} out of {total_models} ({final_known_count/total_models:.2%})")
-        print(f"Skipped items removed: {initial_total - len(df)}")
-        print(f"Improvement: {final_known_count - initial_known_count} additional models matched")
+    # Save results
+    output_path = DATA_DIR / OUTPUT_FORMAT.format(date=datetime.now().strftime("%Y-%m-%d"))
+    df.to_csv(output_path, index=False)
+    print(f"\nData saved to {output_path}")
+
+    # Print statistics
+    total = len(df)
+    if "model" in df.columns:
+        matched = len(df[~df['model'].isin(['Unknown', 'Multi'])])
+        print(f"\nStatistics:")
+        print(f"Total listings: {total}")
+        print(f"Successfully matched: {matched} ({matched/total:.1%})")
+
+        if args.verbose:
+            print("\nModel distribution:")
+            print(df['model'].value_counts())
+            print("\nFinal results by ID:")
+            for _, row in df.iterrows():
+                print(f"\nAd ID: {row['ad_id']}")
+                print(f"Title: {row['heading']}")
+                print(f"Model: {row['model']}")
+                print(f"Price: {row['price']}")
+                print(f"URL: {row['canonical_url']}")
+    else:
+        print(f"\nWarning: 'model' column not found in DataFrame")
+        print(f"Available columns: {', '.join(df.columns)}")
 
 if __name__ == "__main__":
     main()

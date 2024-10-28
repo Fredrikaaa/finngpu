@@ -3,3 +3,6 @@ output.csv
 whitelist.txt
 apitest.py
 api_return.txt
+data/*
+logs/*
+__pycache__/

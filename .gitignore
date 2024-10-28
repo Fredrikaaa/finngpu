@@ -6,3 +6,4 @@ api_return.txt
 data/*
 logs/*
 __pycache__/
+analysis.csv

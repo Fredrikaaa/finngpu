@@ -54,13 +54,15 @@ def match_gpu_model(text: str, gpu_models: list, debug=False) -> tuple:
     if debug:
         print(f"\nProcessing text: {text}")
 
-    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx|intel\s*arc|arc)\s*)?([a]?\d{3,4})\s*(ti|xt|xtx|gre|super|s)?\s*(?:(\d+)\s*gb)?\b'
+    pattern = r'\b(?:(?:geforce|nvidia|rtx|gtx|radeon|rx|intel\s*arc|arc)\s*)?([a]?\d{3,4})\s*[-\s]*(ti|xt|xtx|gre|super|s)?\s*(?:(\d+)\s*gb)?\b'
     matches = list(re.finditer(pattern, text))
 
     if debug:
         print(f"Regex matches found: {len(matches)}")
         for m in matches:
             print(f"Match groups: {m.groups()}")
+            print(f"Full match: '{m.group(0)}'")
+            print(f"Context: '...{text[max(0, m.start()-20):m.end()+20]}...'")
 
     if not matches:
         return "Unknown", None, None, None, None, 0
@@ -93,11 +95,19 @@ def match_gpu_model(text: str, gpu_models: list, debug=False) -> tuple:
             print(f"  Model number: {model_number}")
 
         # Special case for RTX 2060
-        if number == "2060" and not suffix and not vram and brand == "NVIDIA":
+        if number == "2060" and not suffix:
+            found_2060_match = False
             for gpu in gpu_models:
-                if "2060" in gpu.lower() and "6 gb" in gpu.lower() and "super" not in gpu.lower():
-                    all_matched_gpus.append((gpu, brand, model_number, "6", model_number))
-                    continue
+                gpu_lower = gpu.lower()
+                # Only match base 2060 6GB model if no explicit VRAM is specified in the title
+                if "2060" in gpu_lower and "6 gb" in gpu_lower and "super" not in gpu_lower:
+                    # Only add if no VRAM was specified or if specified VRAM matches
+                    if not vram or vram == "6":
+                        all_matched_gpus.append((gpu, brand, "2060", "6", "2060"))
+                        found_2060_match = True
+                        break
+            if found_2060_match:
+                continue
 
         exact_matches = []
         base_model_matches = []
@@ -190,11 +200,17 @@ def fetch_description(url: str) -> str:
         response.raise_for_status()
         soup = BeautifulSoup(response.content, 'html.parser')
         about_section = soup.find('section', class_='about-section')
-        return about_section.get_text(strip=True) if about_section else ""
+        if about_section:
+            # Get text while preserving spaces and newlines
+            text = about_section.get_text(separator=' ', strip=True)
+            # Replace multiple spaces with single space
+            text = re.sub(r'\s+', ' ', text)
+            return text
+        return ""
     except requests.RequestException:
         return ""
 
-def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: dict) -> pd.DataFrame:
+def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: dict, verbose: bool = False) -> pd.DataFrame:
     """Process raw listings into structured data with progress tracking"""
     processed_items = []
     skipped_count = 0
@@ -204,25 +220,38 @@ def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: 
 
     for item in pbar:
         heading = item.get('heading', '').lower()
+        ad_id = str(item.get('id', ''))
 
-        # Skip blacklisted
-        if str(item.get('id', '')) in blacklist['ids'] or \
-           any(pattern in heading for pattern in blacklist['patterns']):
-            continue
-
-        # Skip whitelisted (when whitelist is used)
+        # If whitelist exists, only process whitelisted items
         if whitelist['patterns'] or whitelist['ids']:
-            if str(item.get('id', '')) not in whitelist['ids'] and \
+            if ad_id not in whitelist['ids'] and \
                not any(pattern in heading for pattern in whitelist['patterns']):
                 continue
+            elif verbose:
+                print(f"\nProcessing whitelisted item {ad_id}:")
+                print(f"Title: {heading}")
+        else:
+            # If no whitelist, apply blacklist and skip terms
+            if ad_id in blacklist['ids'] or \
+               any(pattern in heading for pattern in blacklist['patterns']):
+                continue
 
-        # Skip items containing skip terms
-        if any(term in heading for term in SKIP_TERMS):
-            skipped_count += 1
-            continue
+            if any(term in heading for term in SKIP_TERMS):
+                skipped_count += 1
+                continue
 
         # Extract GPU info from title
-        model, brand, model_number, vram, matched_number, match_count = match_gpu_model(heading, gpu_models)
+        model, brand, model_number, vram, matched_number, match_count = match_gpu_model(heading, gpu_models, debug=verbose)
+
+        if verbose:
+            print(f"Matched model: {model}")
+            if brand:
+                print(f"Brand: {brand}")
+            if model_number:
+                print(f"Model number: {model_number}")
+            if vram:
+                print(f"VRAM: {vram}GB")
+            print("-" * 80)
 
         # Track if we'll need to fetch description
         if model == "Unknown":
@@ -232,13 +261,13 @@ def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: 
             "heading": item.get('heading', ''),
             "price": item.get("price", {}).get("amount", "N/A"),
             "model": model,
-            "extracted_brand": brand,
-            "extracted_model": model_number,
-            "extracted_vram": vram,
-            "matched_model_number": matched_number,
+            "brand": brand,
+            "model_number": model_number,
+            "vram": vram,
+            "matched_number": matched_number,
             "match_count": match_count,
             "location": item.get("location", "N/A"),
-            "ad_id": item.get("id", ""),
+            "ad_id": ad_id,
             "canonical_url": item.get("canonical_url", "")
         })
 
@@ -246,22 +275,31 @@ def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: 
 
     # Fetch descriptions for unknowns if needed
     if unknown_count > 0:
+        rate_limit = RateLimiter(API["rate_limit"])
         print(f"\nFetching descriptions for {unknown_count} unmatched items...")
         desc_pbar = tqdm(processed_items, desc="Fetching descriptions")
 
         for item in desc_pbar:
             if item["model"] == "Unknown":
                 desc_pbar.set_postfix_str(f"Processing: {item['ad_id']}...")
+                rate_limit()
                 description = fetch_description(item["canonical_url"])
                 if description:
-                    model, brand, model_number, vram, matched_number, match_count = match_gpu_model(description, gpu_models)
+                    if verbose:
+                        print(f"\nTrying to match from description for {item['ad_id']}:")
+                        print(f"Description: {description[:200]}...")
+
+                    model, brand, model_number, vram, matched_number, match_count = match_gpu_model(
+                        description, gpu_models, debug=verbose
+                    )
+
                     if model != "Unknown":
                         item.update({
                             "model": model,
-                            "extracted_brand": brand,
-                            "extracted_model": model_number,
-                            "extracted_vram": vram,
-                            "matched_model_number": matched_number,
+                            "brand": brand,
+                            "model_number": model_number,
+                            "vram": vram,
+                            "matched_number": matched_number,
                             "match_count": match_count
                         })
 
@@ -280,12 +318,25 @@ def main():
     blacklist = load_filter_list(args.blacklist, "blacklist")
     whitelist = load_filter_list(args.whitelist, "whitelist") if args.whitelist else {'patterns': [], 'ids': []}
 
+    if args.verbose:
+        print("\nLoaded configuration:")
+        if whitelist['ids']:
+            print(f"Whitelist IDs: {', '.join(whitelist['ids'])}")
+        if whitelist['patterns']:
+            print(f"Whitelist patterns: {', '.join(whitelist['patterns'])}")
+        print(f"Skip terms: {', '.join(SKIP_TERMS)}")
+        print("-" * 80)
+
     # Set up rate limiter
     rate_limit = RateLimiter(API["rate_limit"])
 
     if args.file:
         # Process existing file
-        df = pd.read_csv(args.file)
+        try:
+            df = pd.read_csv(args.file)
+        except Exception as e:
+            print(f"Error reading file: {e}")
+            return
     else:
         # Fetch new listings
         all_items = []
@@ -306,7 +357,7 @@ def main():
                 pbar.update(1)
 
         # Process fetched listings
-        df = process_listings(all_items, gpu_models, blacklist, whitelist)
+        df = process_listings(all_items, gpu_models, blacklist, whitelist, verbose=args.verbose)
 
     # Save results
     output_path = DATA_DIR / OUTPUT_FORMAT.format(date=datetime.now().strftime("%Y-%m-%d"))
@@ -315,10 +366,25 @@ def main():
 
     # Print statistics
     total = len(df)
-    matched = df['model'].value_counts().drop(['Unknown', 'Multi'], errors='ignore').sum()
-    print(f"\nStatistics:")
-    print(f"Total listings: {total}")
-    print(f"Successfully matched: {matched} ({matched/total:.1%})")
+    if "model" in df.columns:
+        matched = len(df[~df['model'].isin(['Unknown', 'Multi'])])
+        print(f"\nStatistics:")
+        print(f"Total listings: {total}")
+        print(f"Successfully matched: {matched} ({matched/total:.1%})")
+
+        if args.verbose:
+            print("\nModel distribution:")
+            print(df['model'].value_counts())
+            print("\nFinal results by ID:")
+            for _, row in df.iterrows():
+                print(f"\nAd ID: {row['ad_id']}")
+                print(f"Title: {row['heading']}")
+                print(f"Model: {row['model']}")
+                print(f"Price: {row['price']}")
+                print(f"URL: {row['canonical_url']}")
+    else:
+        print(f"\nWarning: 'model' column not found in DataFrame")
+        print(f"Available columns: {', '.join(df.columns)}")
 
 if __name__ == "__main__":
     main()

@@ -5,3 +5,4 @@ apitest.py
 api_return.txt
 data/*
 logs/*
+pycache

@@ -259,7 +259,7 @@ if [ $FINNGPU_EXIT_CODE -eq 0 ]; then
         
         # Run analysis on the new data
         log "Running GPU analysis"
-        python gpu_analysis.py \
+        python price_analysis.py \
             -f "$LISTINGS_DIR/$newest_csv" \
             -p "1440p-ultra-performance.csv" \
             -c "$CURRENT_ANALYSIS" \

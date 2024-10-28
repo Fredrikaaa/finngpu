@@ -1,9 +1,7 @@
-# Filters out titles with "pc" or "stasjonær" regardless of seller:
-pc
-stasjonær
-GamingPoint
 341981334
 367447424
 372724808
 359598161
 327603403
+377151492
+351376977

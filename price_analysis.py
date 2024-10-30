@@ -9,9 +9,9 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Analyze GPU listings and find the best price-to-performance ratios.",
         epilog="Example usage:\n"
-               "  %(prog)s -p performance.csv                  # Use latest listings\n"
-               "  %(prog)s -f listings.csv -p performance.csv  # Use specific listings\n"
-               "  %(prog)s -p performance.csv -c output.csv    # Save to CSV\n",
+               "  %(prog)s -p performance.csv                                    # Use latest listings\n"
+               "  %(prog)s -p performance.csv --brand nvidia                     # Filter by brand\n"
+               "  %(prog)s -p performance.csv --max-price 5000 --min-fps 100    # Filter by price and performance\n",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("-f", "--file",
@@ -20,6 +20,27 @@ def parse_args():
                        help="Path to the CSV file containing 1440p performance data")
     parser.add_argument("-c", "--csv", dest="output_csv", metavar="OUTPUT_FILE",
                        help="Output results to a CSV file instead of console")
+
+    # Add new filtering arguments
+    filter_group = parser.add_argument_group('filtering options')
+    filter_group.add_argument("--brand",
+                            help="Filter by brand (e.g., 'nvidia' or 'amd')",
+                            type=str.lower)
+    filter_group.add_argument("--min-price",
+                            help="Minimum price to include",
+                            type=float)
+    filter_group.add_argument("--max-price",
+                            help="Maximum price to include",
+                            type=float)
+    filter_group.add_argument("--min-fps",
+                            help="Minimum 1440p FPS to include",
+                            type=float)
+    filter_group.add_argument("--max-fps",
+                            help="Maximum 1440p FPS to include",
+                            type=float)
+    filter_group.add_argument("--exclude-models",
+                            help="Comma-separated list of model patterns to exclude (e.g., '3060,6700')",
+                            type=str)
     return parser.parse_args()
 
 def find_latest_gpu_listings():
@@ -64,7 +85,35 @@ def parse_gpu_listings(filename):
 
     return cheapest_prices
 
-def load_and_process_data(listings_file, performance_file):
+def apply_filters(df, args):
+    """Apply filters based on command line arguments."""
+    filtered_df = df.copy()
+
+    if args.brand:
+        # Convert model names to lowercase for case-insensitive comparison
+        filtered_df = filtered_df[filtered_df['model'].str.lower().str.contains(args.brand)]
+
+    if args.min_price is not None:
+        filtered_df = filtered_df[filtered_df['price'] >= args.min_price]
+
+    if args.max_price is not None:
+        filtered_df = filtered_df[filtered_df['price'] <= args.max_price]
+
+    if args.min_fps is not None:
+        filtered_df = filtered_df[filtered_df['1440p Ultra FPS'] >= args.min_fps]
+
+    if args.max_fps is not None:
+        filtered_df = filtered_df[filtered_df['1440p Ultra FPS'] <= args.max_fps]
+
+    if args.exclude_models:
+        exclude_patterns = [pattern.strip().lower() for pattern in args.exclude_models.split(',')]
+        # Create a boolean mask for models that don't match any exclude pattern
+        mask = ~filtered_df['model'].str.lower().str.contains('|'.join(exclude_patterns))
+        filtered_df = filtered_df[mask]
+
+    return filtered_df
+
+def load_and_process_data(listings_file, performance_file, args):
     # Get the cheapest price for each GPU model
     cheapest_df = parse_gpu_listings(listings_file)
 
@@ -87,8 +136,11 @@ def load_and_process_data(listings_file, performance_file):
     # Calculate price per FPS
     merged_df['Price per FPS'] = merged_df['price'] / merged_df['1440p Ultra FPS']
 
+    # Apply filters
+    filtered_df = apply_filters(merged_df, args)
+
     # Sort by Price per FPS
-    sorted_df = merged_df.sort_values('Price per FPS')
+    sorted_df = filtered_df.sort_values('Price per FPS')
 
     # Clean up the result
     result_df = sorted_df[['model', 'price', '1440p Ultra FPS', 'Price per FPS', 'canonical_url']]
@@ -96,6 +148,10 @@ def load_and_process_data(listings_file, performance_file):
     return result_df
 
 def display_results(df, output_csv=None):
+    if df.empty:
+        print("\nNo results found matching the specified filters.")
+        return
+
     if output_csv:
         # Output to CSV file
         df.to_csv(output_csv, index=False)
@@ -118,7 +174,7 @@ def main():
 
     try:
         # Load and process the data
-        result_df = load_and_process_data(input_file, args.performance)
+        result_df = load_and_process_data(input_file, args.performance, args)
 
         # Display the results
         display_results(result_df, args.output_csv)

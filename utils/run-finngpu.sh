@@ -7,6 +7,7 @@ ANALYSIS_FILE="$BASE_DIR/analysis.csv"
 PREV_ANALYSIS_FILE="$BASE_DIR/analysis_prev.csv"
 CURRENT_ANALYSIS="$ANALYSIS_FILE"  # Output file for price analysis
 VENV_DIR="$BASE_DIR/venv"
+EMAIL="email@mail.com"
 
 # Function to check if a command exists
 command_exists() {
@@ -90,7 +91,7 @@ if [[ -f "$ANALYSIS_FILE" ]]; then
         if [[ "$CURRENT_TOP_TEN" != "$PREV_TOP_TEN" ]]; then
             # If there are changes, send email notification
             echo "Top 10 ads have changed. Sending notification."
-            mail -s "GPU Price/Performance Update" user@email.com < "$ANALYSIS_FILE"
+            mail -s "GPU Price/Performance Update" "$EMAIL" < "$ANALYSIS_FILE"
         else
             echo "No changes in the top 10 ads."
         fi

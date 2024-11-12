@@ -133,8 +133,8 @@ def load_and_process_data(listings_file, performance_file, args):
         for model in unmatched_models['model']:
             print(f"- {model}")
 
-    # Calculate price per FPS
-    merged_df['Price per FPS'] = merged_df['price'] / merged_df['1440p Ultra FPS']
+    # Calculate price per FPS and round to 1 decimal place
+    merged_df['Price per FPS'] = (merged_df['price'] / merged_df['1440p Ultra FPS']).round(1)
 
     # Apply filters
     filtered_df = apply_filters(merged_df, args)
@@ -162,9 +162,9 @@ def display_results(df, output_csv=None):
         print(f"{'Model':<40}{'Price':>10}{'1440p FPS':>15}{'Price per FPS':>20}{'URL':<100}")
         print("-" * 185)
 
-        # Print each row of the table
+        # Print each row of the table with Price per FPS rounded to 1 decimal
         for _, row in df.iterrows():
-            print(f"{row['model']:<40}{row['price']:>10.2f}{row['1440p Ultra FPS']:>15.2f}{row['Price per FPS']:>20.2f}{row['canonical_url']:<100}")
+            print(f"{row['model']:<40}{row['price']:>10.2f}{row['1440p Ultra FPS']:>15.2f}{row['Price per FPS']:>20.1f}{row['canonical_url']:<100}")
 
 def main():
     args = parse_args()

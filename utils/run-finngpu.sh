@@ -3,7 +3,7 @@
 # Set the base directory to the script's parent directory for relative paths
 BASE_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
 DATA_DIR="$BASE_DIR/data"  # Keep original data dir for scraping
-FINNGPU_WWW="/var/www/finngpu"  # New web-accessible directory
+FINNGPU_WWW="/var/www/finngpu"  # Web-accessible directory
 ANALYSIS_FILE="$FINNGPU_WWW/analysis.csv"
 PREV_ANALYSIS_FILE="$FINNGPU_WWW/analysis_prev.csv"
 CURRENT_ANALYSIS="$ANALYSIS_FILE"
@@ -66,10 +66,6 @@ setup_venv() {
 
 setup_venv
 
-# Create necessary directories if they don't exist
-mkdir -p "$DATA_DIR"
-mkdir -p "$FINNGPU_WWW"
-
 # Find the newest CSV file in the data directory
 newest_csv=$(ls -t "$DATA_DIR"/*.csv 2>/dev/null | head -n 1)
 
@@ -86,7 +82,8 @@ python3 finngpu.py -b blacklist.txt -w whitelist.txt
 # Run price_analysis.py with the specified parameters
 python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS" --min-fps 10
 
-# Generate HTML output
+# Run csv_to_html.py (which is in /var/www/finngpu)
+cd "$FINNGPU_WWW"
 python3 csv_to_html.py
 
 # Set proper permissions

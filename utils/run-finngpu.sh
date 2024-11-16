@@ -77,7 +77,13 @@ cd "$BASE_DIR"
 python3 finngpu.py -b blacklist.txt -w whitelist.txt
 
 # Run price_analysis.py with the specified parameters
-python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS"
+python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS" --min-fps 10
+sudo chgrp gpudata "$ANALYSIS_FILE"
+sudo chmod 664 "$ANALYSIS_FILE"
+python3 /var/www/finngpu/csv_to_html.py
+sudo chgrp gpudata /var/www/finngpu/table.html
+sudo chmod 664 /var/www/finngpu/table.html
+
 
 # Check for differences in top ten ads
 if [[ -f "$ANALYSIS_FILE" ]]; then

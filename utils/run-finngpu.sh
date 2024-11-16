@@ -2,12 +2,13 @@
 
 # Set the base directory to the script's parent directory for relative paths
 BASE_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
-DATA_DIR="$BASE_DIR/data"
-ANALYSIS_FILE="$BASE_DIR/analysis.csv"
-PREV_ANALYSIS_FILE="$BASE_DIR/analysis_prev.csv"
-CURRENT_ANALYSIS="$ANALYSIS_FILE"  # Output file for price analysis
+DATA_DIR="/var/www/data"
+ANALYSIS_FILE="$DATA_DIR/analysis.csv"
+PREV_ANALYSIS_FILE="$DATA_DIR/analysis_prev.csv"
+CURRENT_ANALYSIS="$ANALYSIS_FILE"
 VENV_DIR="$BASE_DIR/venv"
 EMAIL="email@mail.com"
+
 
 # Function to check if a command exists
 command_exists() {
@@ -76,13 +77,13 @@ fi
 cd "$BASE_DIR"
 python3 finngpu.py -b blacklist.txt -w whitelist.txt
 
-# Run price_analysis.py with the specified parameters
+# Generate HTML in data directory
 python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS" --min-fps 10
-sudo chgrp gpudata "$ANALYSIS_FILE"
-sudo chmod 664 "$ANALYSIS_FILE"
-python3 /var/www/finngpu/csv_to_html.py
-sudo chgrp gpudata /var/www/finngpu/table.html
-sudo chmod 664 /var/www/finngpu/table.html
+python3 csv_to_html.py --output "/var/www/data/table.html"
+
+# Set permissions (no need to change group as directory is already owned by billy:gpudata)
+chmod 664 "$ANALYSIS_FILE"
+chmod 664 "/var/www/data/table.html"
 
 
 # Check for differences in top ten ads

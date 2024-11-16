@@ -2,13 +2,13 @@
 
 # Set the base directory to the script's parent directory for relative paths
 BASE_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
-DATA_DIR="/var/www/data"
-ANALYSIS_FILE="$DATA_DIR/analysis.csv"
-PREV_ANALYSIS_FILE="$DATA_DIR/analysis_prev.csv"
+DATA_DIR="$BASE_DIR/data"  # Keep original data dir for scraping
+FINNGPU_WWW="/var/www/finngpu"  # New web-accessible directory
+ANALYSIS_FILE="$FINNGPU_WWW/analysis.csv"
+PREV_ANALYSIS_FILE="$FINNGPU_WWW/analysis_prev.csv"
 CURRENT_ANALYSIS="$ANALYSIS_FILE"
 VENV_DIR="$BASE_DIR/venv"
 EMAIL="email@mail.com"
-
 
 # Function to check if a command exists
 command_exists() {
@@ -16,7 +16,7 @@ command_exists() {
 }
 
 # Check dependencies
-DEPENDENCIES=("python3" "mail") # Add "mail" if using mail to notify
+DEPENDENCIES=("python3" "mail")
 for dep in "${DEPENDENCIES[@]}"; do
     if ! command_exists "$dep"; then
         echo "Error: '$dep' is not installed. Please install it and rerun the script."
@@ -63,9 +63,15 @@ setup_venv() {
         fi
     done
 }
+
 setup_venv
+
+# Create necessary directories if they don't exist
+mkdir -p "$DATA_DIR"
+mkdir -p "$FINNGPU_WWW"
+
 # Find the newest CSV file in the data directory
-newest_csv=$(ls -t "$DATA_DIR"/*.csv | head -n 1)
+newest_csv=$(ls -t "$DATA_DIR"/*.csv 2>/dev/null | head -n 1)
 
 # Check if the newest CSV file exists
 if [[ -z "$newest_csv" ]]; then
@@ -77,14 +83,15 @@ fi
 cd "$BASE_DIR"
 python3 finngpu.py -b blacklist.txt -w whitelist.txt
 
-# Generate HTML in data directory
+# Run price_analysis.py with the specified parameters
 python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS" --min-fps 10
-python3 csv_to_html.py --output "/var/www/data/table.html"
 
-# Set permissions (no need to change group as directory is already owned by billy:gpudata)
-chmod 664 "$ANALYSIS_FILE"
-chmod 664 "/var/www/data/table.html"
+# Generate HTML output
+python3 csv_to_html.py
 
+# Set proper permissions
+sudo chgrp gpudata "$ANALYSIS_FILE" "$FINNGPU_WWW/table.html"
+sudo chmod 664 "$ANALYSIS_FILE" "$FINNGPU_WWW/table.html"
 
 # Check for differences in top ten ads
 if [[ -f "$ANALYSIS_FILE" ]]; then
@@ -106,7 +113,7 @@ if [[ -f "$ANALYSIS_FILE" ]]; then
         echo "Previous analysis file not found. Skipping comparison."
     fi
 
-    # Update the previous analysis file with the current run’s output
+    # Update the previous analysis file with the current run's output
     cp "$ANALYSIS_FILE" "$PREV_ANALYSIS_FILE"
 else
     echo "Current analysis file not found. Exiting."

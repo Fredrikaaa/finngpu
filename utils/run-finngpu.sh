@@ -87,6 +87,7 @@ python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance
 
 # Run csv_to_html.py
 cd "$FINNGPU_WWW"
+echo "Generating HTML table..."
 python3 csv_to_html.py
 
 # Set proper permissions
@@ -105,7 +106,7 @@ if [[ -f "$ANALYSIS_FILE" ]]; then
         if [[ "$CURRENT_TOP_TEN" != "$PREV_TOP_TEN" ]]; then
             # If there are changes, send email notification
             echo "Top 10 ads have changed. Sending notification."
-            mail -s "GPU Price/Performance Update" "$EMAIL" < "$ANALYSIS_FILE"
+            #mail -s "GPU Price/Performance Update" "$EMAIL" < "$ANALYSIS_FILE"
         else
             echo "No changes in the top 10 ads."
         fi

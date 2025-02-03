@@ -360,7 +360,7 @@ def main():
         df = process_listings(all_items, gpu_models, blacklist, whitelist, verbose=args.verbose)
 
     # Save results
-    output_path = DATA_DIR / OUTPUT_FORMAT.format(date=datetime.now().strftime("%Y-%m-%d"))
+    output_path = Path("/var/www/finngpu/data") / OUTPUT_FORMAT.format(date=datetime.now().strftime("%Y-%m-%d"))
     df.to_csv(output_path, index=False)
     print(f"\nData saved to {output_path}")
 

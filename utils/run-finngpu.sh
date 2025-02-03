@@ -48,18 +48,17 @@ setup_venv
 # Create directories if they don't exist
 mkdir -p "$DATA_DIR"
 
-# Find the newest CSV file in the data directory
-newest_csv=$(ls -t "$DATA_DIR"/*.csv 2>/dev/null | head -n 1)
+# Run finngpu.py FIRST to generate new data
+python3 finngpu.py -b blacklist.txt -w whitelist.txt
+
+# THEN find the newest scraped data file
+newest_csv=$(ls -t "$DATA_DIR"/gpu_listings_*.csv 2>/dev/null | head -n 1)
 
 # Check if the newest CSV file exists
 if [[ -z "$newest_csv" ]]; then
     echo "Error: No CSV file found in $DATA_DIR."
     exit 1
 fi
-
-# Run finngpu.py with blacklist and whitelist parameters
-cd "$BASE_DIR"
-python3 finngpu.py -b blacklist.txt -w whitelist.txt
 
 # Run price_analysis.py with the specified parameters
 python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS" --min-fps 10

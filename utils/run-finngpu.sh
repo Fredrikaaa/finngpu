@@ -60,12 +60,11 @@ if [[ -z "$newest_csv" ]]; then
     exit 1
 fi
 
-# Run price_analysis.py with the specified parameters
-python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$CURRENT_ANALYSIS" --min-fps 10
+# Run price_analysis.py
+python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$FINNGPU_WWW/analysis.csv" --min-fps 10
 
 # Run csv_to_html.py
 cd "$FINNGPU_WWW"
-echo "Generating HTML table..."
 python3 csv_to_html.py
 
 # Modified permissions section (remove sudo)

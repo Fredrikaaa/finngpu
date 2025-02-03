@@ -52,7 +52,7 @@ mkdir -p "$DATA_DIR"
 python3 finngpu.py -b blacklist.txt -w whitelist.txt
 
 # THEN find the newest scraped data file
-newest_csv=$(ls -t "$DATA_DIR"/gpu_listings_*.csv 2>/dev/null | head -n 1)
+newest_csv=$(ls -t "$DATA_DIR"/finn_gpu_listings_*.csv 2>/dev/null | head -n 1)
 
 # Check if the newest CSV file exists
 if [[ -z "$newest_csv" ]]; then

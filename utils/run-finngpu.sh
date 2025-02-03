@@ -3,7 +3,7 @@
 # Set the base directory to the script's parent directory for relative paths
 BASE_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
 FINNGPU_WWW="/var/www/finngpu"  # Web directory
-DATA_DIR="$FINNGPU_WWW/data"    # Data directory now inside finngpu
+DATA_DIR="$FINNGPU_WWW/data"
 ANALYSIS_FILE="$FINNGPU_WWW/analysis.csv"
 PREV_ANALYSIS_FILE="$FINNGPU_WWW/analysis_prev.csv"
 CURRENT_ANALYSIS="$ANALYSIS_FILE"

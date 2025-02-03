@@ -33,4 +33,5 @@ WHITELIST_FILE = BASE_DIR / "whitelist.txt"
 SKIP_TERMS = ['pc', 'stasjonær', 'mining', 'mac', 'laptop', 'dell', 'gamingpoint', 'datamaskin', 'server', 'windows', 'lenovo', 'desktop', 'kjøler']
 
 # Output settings
+OUTPUT_DIR = Path("/var/www/finngpu/data")
 OUTPUT_FORMAT = "finn_gpu_listings_{date}.csv"

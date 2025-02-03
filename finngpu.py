@@ -214,18 +214,19 @@ def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: 
     """Process raw listings into structured data with progress tracking"""
     processed_items = []
     skipped_count = 0
+    skip_patterns = [re.compile(rf'\b{re.escape(term)}\b', re.IGNORECASE) for term in SKIP_TERMS]
 
     pbar = tqdm(items, desc="Processing listings")
     unknown_count = 0
 
     for item in pbar:
-        heading = item.get('heading', '').lower()
+        heading = item.get('heading', '')
         ad_id = str(item.get('id', ''))
 
         # If whitelist exists, only process whitelisted items
         if whitelist['patterns'] or whitelist['ids']:
             if ad_id not in whitelist['ids'] and \
-               not any(pattern in heading for pattern in whitelist['patterns']):
+               not any(pattern in heading.lower() for pattern in whitelist['patterns']):
                 continue
             elif verbose:
                 print(f"\nProcessing whitelisted item {ad_id}:")
@@ -233,10 +234,13 @@ def process_listings(items: list, gpu_models: list, blacklist: dict, whitelist: 
         else:
             # If no whitelist, apply blacklist and skip terms
             if ad_id in blacklist['ids'] or \
-               any(pattern in heading for pattern in blacklist['patterns']):
+               any(pattern in heading.lower() for pattern in blacklist['patterns']):
                 continue
 
-            if any(term in heading for term in SKIP_TERMS):
+            # Improved skip term matching with whole-word check
+            if any(pattern.search(heading) for pattern in skip_patterns):
+                if verbose:
+                    print(f"Skipping item {ad_id} containing: {heading}")
                 skipped_count += 1
                 continue
 

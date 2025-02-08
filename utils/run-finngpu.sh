@@ -69,7 +69,7 @@ python3 price_analysis.py \
     --min-fps 10
 
 # Generate HTML table
-cd "$PUBLIC_DIR"
+cd "$WWW_DIR"
 python3 csv_to_html.py
 
 # Check for differences in top ten ads

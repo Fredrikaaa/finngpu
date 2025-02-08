@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# Set the base directory to the script's parent directory for relative paths
+# Base directories
 BASE_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
-FINNGPU_WWW="/var/www/finngpu"  # Web directory
-DATA_DIR="$FINNGPU_WWW/data"
-ANALYSIS_FILE="$FINNGPU_WWW/analysis.csv"
-PREV_ANALYSIS_FILE="$FINNGPU_WWW/analysis_prev.csv"
-CURRENT_ANALYSIS="$ANALYSIS_FILE"
+WWW_DIR="/var/www/finngpu"
+PUBLIC_DIR="$WWW_DIR/public"
+DATA_DIR="$WWW_DIR/data"
 VENV_DIR="$BASE_DIR/.venv"
 EMAIL="email@mail.com"
 REQUIREMENTS="$BASE_DIR/requirements.txt"
+
+# Analysis files
+ANALYSIS_FILE="$PUBLIC_DIR/analysis.csv"
+PREV_ANALYSIS_FILE="$PUBLIC_DIR/analysis_prev.csv"
 
 # Function to check if a command exists
 command_exists() {
@@ -25,13 +27,8 @@ for dep in "${DEPENDENCIES[@]}"; do
     fi
 done
 
-# Set web directory permissions early
-sudo chown -R $USER:gpudata "$FINNGPU_WWW"
-sudo chmod -R 775 "$FINNGPU_WWW"
-
 # Function to setup virtual environment
 setup_venv() {
-    # Check if venv already exists
     if [ ! -d "$VENV_DIR" ]; then
         echo "Creating virtual environment..."
         python3 -m venv "$VENV_DIR"
@@ -43,15 +40,19 @@ setup_venv() {
     fi
 }
 
+# Ensure directories exist
+mkdir -p "$DATA_DIR" "$PUBLIC_DIR"
+
+# Setup and activate virtual environment
 setup_venv
 
-# Create directories if they don't exist
-mkdir -p "$DATA_DIR"
+# Set umask for file creation
+umask 022
 
-# Run finngpu.py FIRST to generate new data
+# Run scraper to generate new data
 python3 finngpu.py -b blacklist.txt -w whitelist.txt
 
-# THEN find the newest scraped data file
+# Find the newest scraped data file
 newest_csv=$(ls -t "$DATA_DIR"/finn_gpu_listings_*.csv 2>/dev/null | head -n 1)
 
 # Check if the newest CSV file exists
@@ -60,30 +61,28 @@ if [[ -z "$newest_csv" ]]; then
     exit 1
 fi
 
-# Run price_analysis.py
-python3 price_analysis.py -f "$newest_csv" -p "$BASE_DIR/1440p-ultra-performance.csv" -c "$FINNGPU_WWW/analysis.csv" --min-fps 10
+# Run price analysis
+python3 price_analysis.py \
+    -f "$newest_csv" \
+    -p "$BASE_DIR/1440p-ultra-performance.csv" \
+    -c "$ANALYSIS_FILE" \
+    --min-fps 10
 
-# Run csv_to_html.py
-cd "$FINNGPU_WWW"
+# Generate HTML table
+cd "$PUBLIC_DIR"
 python3 csv_to_html.py
-
-# Modified permissions section (remove sudo)
-chgrp gpudata "$ANALYSIS_FILE" "$FINNGPU_WWW/table.html"
-chmod 664 "$ANALYSIS_FILE" "$FINNGPU_WWW/table.html"
 
 # Check for differences in top ten ads
 if [[ -f "$ANALYSIS_FILE" ]]; then
-    # If previous analysis exists, compare it
     if [[ -f "$PREV_ANALYSIS_FILE" ]]; then
-        # Extract top ten ads (excluding the header) from current and previous analysis files
+        # Extract top ten ads (excluding the header)
         CURRENT_TOP_TEN=$(head -n 11 "$ANALYSIS_FILE" | tail -n 10)
         PREV_TOP_TEN=$(head -n 11 "$PREV_ANALYSIS_FILE" | tail -n 10)
 
         # Compare the top ten entries
         if [[ "$CURRENT_TOP_TEN" != "$PREV_TOP_TEN" ]]; then
-            # If there are changes, send email notification
             echo "Top 10 ads have changed. Sending notification."
-            #mail -s "GPU Price/Performance Update" "$EMAIL" < "$ANALYSIS_FILE"
+#            mail -s "GPU Price/Performance Update" "$EMAIL" < "$ANALYSIS_FILE"
         else
             echo "No changes in the top 10 ads."
         fi
@@ -91,7 +90,7 @@ if [[ -f "$ANALYSIS_FILE" ]]; then
         echo "Previous analysis file not found. Skipping comparison."
     fi
 
-    # Update the previous analysis file with the current run's output
+    # Update the previous analysis file
     cp "$ANALYSIS_FILE" "$PREV_ANALYSIS_FILE"
 else
     echo "Current analysis file not found. Exiting."
